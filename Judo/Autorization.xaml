@@ -1,0 +1,26 @@
+﻿<Window x:Class="Judo.Autorization"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Judo"
+        mc:Ignorable="d"
+        Title="Autorization" Height="348.571" Width="537.143">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="357*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Name ="tbLogin" HorizontalAlignment="Left" Height="25" Margin="138,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258" Grid.ColumnSpan="2"/>
+
+        <Label Name ="lbPassword" Content="Пароль" HorizontalAlignment="Left" Margin="138,123,0,0" VerticalAlignment="Top" FontFamily="Arial" Grid.ColumnSpan="2"/>
+        <TextBox Name ="tbPassword" HorizontalAlignment="Left" Height="23" Margin="138,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258" Grid.ColumnSpan="2"/>
+        <Button Name ="butLogin" Content="Вход" HorizontalAlignment="Left" Margin="138,250,0,0" VerticalAlignment="Top" Width="120" FontFamily="Arial" Grid.ColumnSpan="2"/>
+        <Button Name ="butRegistration" Content="Регистрация" HorizontalAlignment="Left" Margin="115.635,250,0,0" VerticalAlignment="Top" Width="120" FontFamily="Arial" Grid.Column="1"/>
+        <TextBlock Name ="tblForgot" HorizontalAlignment="Left" Margin="156,201,0,0" TextWrapping="Wrap" Text="Забыли пароль?" VerticalAlignment="Top" Width="111" FontFamily="Arial" Grid.ColumnSpan="2"/>
+        <TextBlock Name ="tblGuest" HorizontalAlignment="Left" Margin="153.635,201,0,0" TextWrapping="Wrap" Text="Я гость" VerticalAlignment="Top" FontFamily="Arial" Grid.Column="1"/>
+        <Label Name ="lbLogin" Content="Логин" HorizontalAlignment="Left" Margin="138,58,0,0" VerticalAlignment="Top" FontFamily="Arial" Grid.ColumnSpan="2"/>
+
+
+    </Grid>
+</Window>
