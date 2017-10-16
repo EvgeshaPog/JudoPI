@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Judo
 {
     /// <summary>
-    /// Логика взаимодействия для Gorod.xaml
+    /// Логика взаимодействия для SportC.xaml
     /// </summary>
-    public partial class Gorod : Window
+    public partial class SportC : Window
     {
-        public Gorod()
+        public SportC()
         {
             InitializeComponent();
         }
