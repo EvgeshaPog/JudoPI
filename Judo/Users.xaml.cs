@@ -86,7 +86,8 @@ namespace Judo
         }
 
         private void butDelete_Click(object sender, RoutedEventArgs e)
-        {
+        { 
+        
             if (UsersDataGrid.SelectedItem != null && UsersDataGrid.SelectedIndex != -1)
             {
                 //DialogResult dialogResult = MessageBox.Show("Вы уверены, что хотите удалить эту запись таблицы?", "Проверка", MessageBoxButtons.YesNo);
@@ -99,8 +100,11 @@ namespace Judo
                 cmd.ExecuteNonQuery();
                 con.Close();
                 LoadTable();
+
+
                 //}
             }
+        
             else { MessageBox.Show("Выберите запись для удаления"); }
         }
 

@@ -55,9 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Autorization.xaml.cs">
-      <DependentUpon>Autorization.xaml</DependentUpon>
-    </Compile>
     <Compile Include="fightGroup.xaml.cs">
       <DependentUpon>fightGroup.xaml</DependentUpon>
     </Compile>
