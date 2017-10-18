@@ -67,6 +67,7 @@
     <Compile Include="SportC.xaml.cs">
       <DependentUpon>SportC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SQLData.cs" />
     <Compile Include="WindowControl.xaml.cs">
       <DependentUpon>WindowControl.xaml</DependentUpon>
     </Compile>
