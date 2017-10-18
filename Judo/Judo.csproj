@@ -58,6 +58,9 @@
     <Compile Include="Autorization.xaml.cs">
       <DependentUpon>Autorization.xaml</DependentUpon>
     </Compile>
+    <Compile Include="fightGroup.xaml.cs">
+      <DependentUpon>fightGroup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gorod.xaml.cs">
       <DependentUpon>Gorod.xaml</DependentUpon>
     </Compile>
@@ -78,6 +81,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ClassWeight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="fightGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
