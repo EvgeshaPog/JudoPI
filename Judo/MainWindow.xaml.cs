@@ -27,6 +27,10 @@ namespace Judo
 
         private void butLogin_Click(object sender, RoutedEventArgs e)
         {
+            //Gorod gorod = new Gorod();
+            // gorod.Show();
+            SportC S = new SportC();
+            S.Show();
         }
     }
 }
