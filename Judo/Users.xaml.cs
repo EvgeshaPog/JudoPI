@@ -21,10 +21,12 @@ namespace Judo
     /// </summary>
     public partial class Users : Window
     {
-        SqlConnection con = new SqlConnection("Server=PC; Database=Djudo;Integrated security=True");
+        SQLData db;
+
         public Users()
         {
             InitializeComponent();
+            db = new SQLData();
         }
 
         private void butAdd_Click(object sender, RoutedEventArgs e)
@@ -53,36 +55,25 @@ namespace Judo
 
         private void butEdit_Click(object sender, RoutedEventArgs e)
         {
-            con = new SqlConnection("Server=PC; Database=Djudo;Integrated security=True");
             if (UsersDataGrid.SelectedItems.Count > 0) {
                 groupBox.Header = "Редактировать";
                 DataRowView row = (DataRowView)UsersDataGrid.SelectedItems[0];
 
-                string query = "SELECT [Id] as 'Id', [FIO] as 'ФИО', [Login] as 'Логин', [Password] as 'Пароль', [Admin] as 'Администратор' FROM [dbo].[User] Where [Id]= '" + row["Id"] + "'";
-                con.Open();
-                SqlDataAdapter da = new SqlDataAdapter(query, con);
-                DataSet myDS = new DataSet();
-                da.Fill(myDS, "User");
 
-                string[] words = myDS.Tables["User"].Rows[0][1].ToString().Split(new char[] { ' ' });
+                DataTable datat = db.RunSelect("SELECT [Id] as 'Id', [FIO] as 'ФИО', [Login] as 'Логин', [Password] as 'Пароль', [Admin] as 'Администратор' FROM [dbo].[User] Where [Id]= '" + row["Id"] + "'");
+                string[] words = datat.Rows[0][1].ToString().Split(new char[] { ' ' });
                 textBox_F.Text = words[0];
                 textBox_I.Text = words[1];
                 textBox_O.Text = words[2];
 
-                textBox_Login.Text = myDS.Tables["User"].Rows[0][2].ToString();
-                textBox_Password.Text = myDS.Tables["User"].Rows[0][3].ToString();
+                textBox_Login.Text = datat.Rows[0][2].ToString();
+                textBox_Password.Text = datat.Rows[0][3].ToString();
 
-                CheckBoxAdmin.IsChecked = (myDS.Tables["User"].Rows[0][4].ToString() == "1") ? true : false;
+                CheckBoxAdmin.IsChecked = (datat.Rows[0][4].ToString() == "1") ? true : false;
 
-                con.Close();
                 VisibleTrue();
             }
             else MessageBox.Show("Выберите пользователя в таблице");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Что-то пошло не так, попробуйте снова. Ошибка:" + ex.Message);
-            //}
         }
 
         private void butDelete_Click(object sender, RoutedEventArgs e)
@@ -94,14 +85,8 @@ namespace Judo
                 //if (dialogResult == DialogResult.Yes)
                 //{
                 DataRowView row = (DataRowView)UsersDataGrid.SelectedItems[0];
-                string query = "DELETE  FROM [dbo].[User] WHERE [Id] =" + row["Id"];
-                SqlCommand cmd = new SqlCommand(query, con);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
+                db.RunInsertUpdateDelete("DELETE  FROM [dbo].[User] WHERE [Id] =" + row["Id"]);
                 LoadTable();
-
-
                 //}
             }
         
@@ -119,45 +104,28 @@ namespace Judo
 
             string FIO = textBox_F.Text + " " + textBox_I.Text + " " + textBox_O.Text;
             string admin = (CheckBoxAdmin.IsChecked == true) ? "1" : "0";
-            con = new SqlConnection("Server=PC; Database=Djudo;Integrated security=True");
-
-
 
             if (groupBox.Header.ToString() == "Добавить")
             {
-                string query = "insert into [dbo].[User] ([FIO], [Login], [Password], [Admin]) values  ('" + FIO + "', '" + textBox_Login.Text
-                    + "', '" + textBox_Password.Text + "', '" + admin + "')";
-                SqlCommand cmd = new SqlCommand(query, con);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
+                db.RunInsertUpdateDelete("insert into [dbo].[User] ([FIO], [Login], [Password], [Admin]) values  ('" + FIO + "', '" + textBox_Login.Text
+                    + "', '" + textBox_Password.Text + "', '" + admin + "')");
             }
             if (groupBox.Header.ToString() == "Редактировать")
             {
                 DataRowView row = (DataRowView)UsersDataGrid.SelectedItems[0];
-                string query = "update [dbo].[User]  set [FIO]= '" + FIO + "', [Login]= '" + textBox_Login.Text + "', [Password]= '" +
-                    textBox_Password.Text + "', [Admin]= '" + admin + "' where Id = '" + row["Id"] + "'";
-                SqlCommand cmd = new SqlCommand(query, con);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
+                db.RunInsertUpdateDelete("update [dbo].[User]  set [FIO]= '" + FIO + "', [Login]= '" + textBox_Login.Text + "', [Password]= '" +
+                    textBox_Password.Text + "', [Admin]= '" + admin + "' where Id = '" + row["Id"] + "'");
             }
+
             LoadTable();
             VisibleFalse();
         }
 
         public void LoadTable()
         {
-            using (con)
-            {
-               string CmdString = "SELECT [Id] as 'Id', [FIO] as 'ФИО', [Login] as 'Логин', [Password] as 'Пароль', [Admin] as 'Администратор' FROM [dbo].[User]";
-                SqlCommand cmd = new SqlCommand(CmdString, con);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Users");
-                sda.Fill(dt);
-                UsersDataGrid.ItemsSource = dt.DefaultView;
-                UsersDataGrid.Columns[0].Visibility = Visibility.Hidden;
-            }
+            DataTable datat = db.RunSelect("SELECT [Id] as 'Id', [FIO] as 'ФИО', [Login] as 'Логин', [Password] as 'Пароль', [Admin] as 'Администратор' FROM [dbo].[User]");
+            UsersDataGrid.ItemsSource = datat.DefaultView;
+            UsersDataGrid.Columns[0].Visibility = Visibility.Hidden;
         }
 
         void ClearTextBox()

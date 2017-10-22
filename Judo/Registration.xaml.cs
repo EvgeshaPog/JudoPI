@@ -23,5 +23,10 @@ namespace Judo
         {
             InitializeComponent();
         }
+
+        private void but1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
