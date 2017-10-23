@@ -73,5 +73,12 @@ namespace Judo
             tbLogin.Text = "";
             tbPassword.Password = "";
         }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+           FormGuest fg = new FormGuest();
+            fg.Show();
+            Hide();
+        }
     }
 }
