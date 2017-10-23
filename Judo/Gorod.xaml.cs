@@ -39,6 +39,7 @@ namespace Judo
         {
             dt = db.RunSelect("SELECT Id as 'ID', Name as 'Название', PochtaIndex as 'Почтовый индекс' FROM City");
             dataGridGorod.Columns[0].Visibility = Visibility.Hidden;
+            //dataGridSportC.Columns[0].Visibility = Visibility.Hidden;
         }
         void VisibleFalse()
         {
