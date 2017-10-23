@@ -58,11 +58,23 @@
     <Compile Include="fightGroup.xaml.cs">
       <DependentUpon>fightGroup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FormAdmin.xaml.cs">
+      <DependentUpon>FormAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormJury.xaml.cs">
+      <DependentUpon>FormJury.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gorod.xaml.cs">
       <DependentUpon>Gorod.xaml</DependentUpon>
     </Compile>
     <Compile Include="Mat.xaml.cs">
       <DependentUpon>Mat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MenuAdmin.xaml.cs">
+      <DependentUpon>MenuAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MenuJury.xaml.cs">
+      <DependentUpon>MenuJury.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewUser.xaml.cs">
       <DependentUpon>NewUser.xaml</DependentUpon>
@@ -86,6 +98,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="fightGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FormAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FormJury.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,6 +135,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Mat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MenuAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MenuJury.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
