@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-        Title="SportC" Height="300" Width="350" Closing="Window_Closing">
+        Title="Форма Спортивных клуубов" Height="300" Width="350" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,-8,0">
         <Label x:Name="label" Content="Спортивные клубы" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="9,7,0,0" FontWeight="Bold"/>
         <GroupBox x:Name="gb1" Header="Добавить спортивный клуб" HorizontalAlignment="Left" Margin="12,35,0,0" VerticalAlignment="Top" Height="116" Width="210"/>

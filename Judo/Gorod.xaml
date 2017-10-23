@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-        Title="Gorod" Height="350" Width="416" Closing="Window_Closing">
+        Title="Город" Height="350" Width="416" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,-107,9">
         <GroupBox x:Name="gb1" Header="Добавить город" HorizontalAlignment="Left" Margin="28,45,0,0" VerticalAlignment="Top" Height="152" Width="250">
             <Grid>

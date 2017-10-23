@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-        Title="MenuAdmin" Height="300" Width="300">
+        Title="Меню Администратора" Height="300" Width="300" WindowStartupLocation="CenterScreen">
     <Grid>
         
     </Grid>

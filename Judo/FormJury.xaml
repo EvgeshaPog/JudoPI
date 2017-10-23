@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-        Title="MenuJury" Height="350" Width="525" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="Меню Жури" Height="350" Width="525" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
             <Menu>

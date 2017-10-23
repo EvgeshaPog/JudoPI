@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-        Title="FormAdmin" Height="350" Width="520" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="Форма Администратора" Height="350" Width="520" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <DockPanel Margin="0,0,38,0">
         <DockPanel DockPanel.Dock="Top">
             <Menu>
