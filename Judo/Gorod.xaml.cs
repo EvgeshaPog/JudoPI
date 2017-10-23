@@ -42,6 +42,7 @@ namespace Judo
             DataTable dt = new DataTable("City");
             sda.Fill(dt);
             dataGridGorod.ItemsSource = dt.DefaultView;
+            //dataGridGorod.Columns[0].Visibility = Visibility.Hidden;
             conn.Close();
 
         }
@@ -52,7 +53,6 @@ namespace Judo
             but2.IsEnabled = true;
             but3.IsEnabled = true;
             dataGridGorod.Visibility = Visibility.Visible;
-            //ClearTextBox();
         }
         void VisibleTrue()
         {
@@ -151,6 +151,11 @@ namespace Judo
                 MessageBox.Show("Выберите строку!");
             }
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            App.Current.Windows.OfType<FormAdmin>().First().Show();
+    }
     }
 }
     

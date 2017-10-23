@@ -205,5 +205,15 @@ namespace Judo
             }
             dpBirth.Text = DateTime.Now.ToString();
         }        
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            App.Current.Windows.OfType<FormAdmin>().First().Show();
+        }
+
+        private void but1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

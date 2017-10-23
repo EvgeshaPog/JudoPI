@@ -48,6 +48,7 @@ namespace Judo
             DataTable dt = new DataTable("SportClub");
             sda.Fill(dt);
             dataGridSportC.ItemsSource = dt.DefaultView;
+            dataGridSportC.Columns[0].Visibility = Visibility.Hidden;
             conn.Close();
 
         }
@@ -148,6 +149,11 @@ namespace Judo
         private void but5_Click(object sender, RoutedEventArgs e)
         {
             VisibleFalse();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            App.Current.Windows.OfType<FormAdmin>().First().Show();
         }
     }
 }

@@ -15,18 +15,18 @@ using System.Windows.Shapes;
 namespace Judo
 {
     /// <summary>
-    /// Логика взаимодействия для ClassAge.xaml
+    /// Логика взаимодействия для FormGuest.xaml
     /// </summary>
-    public partial class ClassAge : Window
+    public partial class FormGuest : Window
     {
-        public ClassAge()
+        public FormGuest()
         {
             InitializeComponent();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            App.Current.Windows.OfType<FormAdmin>().First().Show();
+            App.Current.Windows.OfType<MainWindow>().First().Show();
         }
     }
 }
