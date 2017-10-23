@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-        Title="Соревнования по дзюдо" Height="200" Width="300" Closing="Window_Closing">
+        Title="Соревнования по дзюдо" Height="200" Width="300" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid Margin="0,0,0,-2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="199*"/>

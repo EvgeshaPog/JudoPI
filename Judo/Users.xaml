@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-        Title="Пользователи" Height="379.5" Width="706.5" Loaded="Window_Loaded" Closing="Window_Closing" >
+        Title="Пользователи" Height="379.5" Width="706.5" Loaded="Window_Loaded" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,-9,0" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="159*"/>
