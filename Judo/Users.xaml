@@ -5,10 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-        Title="Пользователи" Height="379.5" Width="706.5" Loaded="Window_Loaded" >
+        Title="Пользователи" Height="379.5" Width="706.5" Loaded="Window_Loaded" Closing="Window_Closing" >
     <Grid Margin="0,0,-9,0" >
-        <DataGrid IsReadOnly="True"  SelectionMode="Single" SelectionUnit="FullRow" Margin="10,0,0,0" Name="UsersDataGrid" Height="339" VerticalAlignment="Top" HorizontalAlignment="Left" Width="502" AutomationProperties.IsRowHeader="True" AutomationProperties.IsColumnHeader="True"/>
-        <GroupBox x:Name="groupBox" Visibility="Hidden"   Header="Добавление" HorizontalAlignment="Left" Margin="8,4,0,-23" VerticalAlignment="Top" Height="350" Width="491">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="159*"/>
+            <ColumnDefinition Width="131*"/>
+            <ColumnDefinition Width="417*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid IsReadOnly="True"  SelectionMode="Single" SelectionUnit="FullRow" Margin="10,0,0,0" Name="UsersDataGrid" Height="339" VerticalAlignment="Top" HorizontalAlignment="Left" Width="502" AutomationProperties.IsRowHeader="True" AutomationProperties.IsColumnHeader="True" Grid.ColumnSpan="3"/>
+        <GroupBox x:Name="groupBox" Visibility="Hidden"   Header="Добавление" HorizontalAlignment="Left" Margin="8,4,0,-5" VerticalAlignment="Top" Height="350" Width="491" Grid.ColumnSpan="3">
             <Grid HorizontalAlignment="Left" Margin="0,10,0,29" Width="489" Name="containerCanvas">
                 <Label x:Name="label_F" Content="Фамилия" HorizontalAlignment="Left" Margin="21,14,0,0" VerticalAlignment="Top" Height="26" Width="60"/>
                 <Label x:Name="label_I" Content="Имя" HorizontalAlignment="Left" Margin="177,14,0,0" VerticalAlignment="Top" Height="26" Width="33"/>
@@ -25,8 +30,8 @@
             </Grid>
         </GroupBox>
 
-        <Button x:Name="butAdd" Click="butAdd_Click" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="158" Margin="529,15,0,0" Grid.ColumnSpan="2"/>
-        <Button x:Name="butEdit" Click="butEdit_Click" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="158" Margin="529,43,0,0" Grid.ColumnSpan="2"/>
-        <Button x:Name="butDelete" Click="butDelete_Click" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="158" Margin="529,95,0,0" Grid.ColumnSpan="2"/>
+        <Button x:Name="butAdd" Click="butAdd_Click" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="158" Margin="239.312,15,0,0" Grid.Column="2"/>
+        <Button x:Name="butEdit" Click="butEdit_Click" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="158" Margin="239.312,43,0,0" Grid.Column="2"/>
+        <Button x:Name="butDelete" Click="butDelete_Click" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="158" Margin="239.312,95,0,0" Grid.Column="2"/>
     </Grid>
 </Window>

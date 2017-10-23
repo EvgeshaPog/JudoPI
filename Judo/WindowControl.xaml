@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-        Title="WindowControl" Height="513.103" Width="755.172">
+        Title="WindowControl" Height="513.103" Width="755.172" Closing="Window_Closing">
     <Grid>
         <Button x:Name="butWazaAriWhite"  Margin="50,246,588,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="37">
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Ваза-ари белому" Height="37" Width="88" TextAlignment="Center"/>
