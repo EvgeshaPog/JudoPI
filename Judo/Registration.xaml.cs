@@ -28,5 +28,10 @@ namespace Judo
         {
             App.Current.Windows.OfType<FormAdmin>().First().Show();
         }
+
+        private void but1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

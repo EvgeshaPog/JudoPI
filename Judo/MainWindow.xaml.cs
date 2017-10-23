@@ -33,7 +33,7 @@ namespace Judo
 
         private void butLogin_Click(object sender, RoutedEventArgs e)
         {
-            if(tbLogin.Text!="" && tbPassword.Password.ToString()!="")
+            if (tbLogin.Text != "" && tbPassword.Password.ToString() != "")
             {
                 dt = db.RunSelect("Select FIO, Admin from [User] where Login='" + tbLogin.Text + "' and Password='" + tbPassword.Password.ToString() + "'");
 
