@@ -77,5 +77,12 @@ namespace Judo
             SportC S = new SportC();
             S.Show();
         }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+           FormGuest fg = new FormGuest();
+            fg.Show();
+            Hide();
+        }
     }
 }
