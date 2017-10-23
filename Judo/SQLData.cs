@@ -11,8 +11,8 @@ namespace Judo
 {
     class SQLData
     {
-             string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=новая;Integrated Security=True";// РИНАТ Повелитель Класса SQLDATA
-        //     string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=новая;Integrated Security=True";// Евгения Погорелова
+         //    string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=новая;Integrated Security=True";// РИНАТ Повелитель Класса SQLDATA
+               string connectionString = "Data Source=HOUMPC\\HOUMPC;Initial Catalog=Djudo;Integrated Security=SSPI";// Евгения Погорелова
         //     string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=новая;Integrated Security=True";// Юлия Носонова
         //     string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=новая;Integrated Security=True";// Кристина Саган
         //     string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=новая;Integrated Security=True";// Екатерина Путенихина
@@ -45,7 +45,10 @@ namespace Judo
                 cmd.Clone();
                 connection.Close();
             }
-            catch { return "Произошла ошибка сервера"; }
+            catch (Exception exc)
+            {
+                return ("Произошла ошибка сервера:\r\n" + exc.Message);
+            }
             return "Операция прошла успешно";
          
 

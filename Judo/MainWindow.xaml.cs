@@ -29,8 +29,8 @@ namespace Judo
         {
             //Gorod gorod = new Gorod();
             // gorod.Show();
-            SportC S = new SportC();
-            S.Show();
+            //SportC S = new SportC();
+            //S.Show();
         }
     }
 }
