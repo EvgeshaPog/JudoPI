@@ -33,5 +33,10 @@ namespace Judo
         {
 
         }
+
+        private void but2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

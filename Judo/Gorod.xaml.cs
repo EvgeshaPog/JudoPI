@@ -22,29 +22,23 @@ namespace Judo
     /// </summary>
     public partial class Gorod : Window
     {
-        string connesctionString = @"Data Source=ACER\MSSQLSERVER1;Initial Catalog=Djudo;Integrated Security=True";
+      
+        DataTable dt;
+        SQLData db = new SQLData();
         public Gorod()
         {
             InitializeComponent();
             VisibleFalse();
             LoadTable();
+            db = new SQLData();
+            dt = new DataTable();
         }
           
 
         public void LoadTable()// Вывод данных в таблицу
         {
-            //string connesctionString = @"Data Source=ACER\MSSQLSERVER1;Initial Catalog=Djudo;Integrated Security=True";
-            SqlConnection conn = new SqlConnection(connesctionString);
-            conn.Open();
-            string CmdString = "SELECT Id as 'ID', Name as 'Название', PochtaIndex as 'Почтовый индекс' FROM City";
-            SqlCommand cmd = new SqlCommand(CmdString, conn);
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable("City");
-            sda.Fill(dt);
-            dataGridGorod.ItemsSource = dt.DefaultView;
-            //dataGridGorod.Columns[0].Visibility = Visibility.Hidden;
-            conn.Close();
-
+            dt = db.RunSelect("SELECT Id as 'ID', Name as 'Название', PochtaIndex as 'Почтовый индекс' FROM City");
+            dataGridGorod.Columns[0].Visibility = Visibility.Hidden;
         }
         void VisibleFalse()
         {
@@ -65,6 +59,8 @@ namespace Judo
 
         private void but1_Click(object sender, RoutedEventArgs e)//Добавить
         {
+            tb1.Clear();
+            tb2.Clear();
             VisibleTrue();
             gb1.Header = "Добавить город";
         }
@@ -76,23 +72,17 @@ namespace Judo
                 MessageBox.Show("Не все поля заполнены!");
                 return;
             }
-            SqlConnection conn = new SqlConnection(connesctionString);
+    
             if (gb1.Header.ToString() == "Добавить город")
             {
                 string query = "insert into [dbo].[City] ([Name], [PochtaIndex]) values  ('" + tb1.Text + "', '" + tb2.Text + "')";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                MessageBox.Show(db.RunInsertUpdateDelete(query));
             }
             if (gb1.Header.ToString() == "Редактировать город")
             {
                 DataRowView row = (DataRowView)dataGridGorod.SelectedItems[0];
                 string query = "update [dbo].[City] set [Name]= '" + tb1.Text + "', [PochtaIndex]= '" + tb2.Text + "' where Id = '" + row["Id"] + "'";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                MessageBox.Show(db.RunInsertUpdateDelete(query));
             }
             LoadTable();//вывод данных в таблицу
             VisibleFalse();
@@ -109,13 +99,10 @@ namespace Judo
             {
                 if (MessageBox.Show("Вы действительно хотите удалить запись?", "Удаление записи", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
-                    SqlConnection conn = new SqlConnection(connesctionString);
+                   
                     DataRowView row = (DataRowView)dataGridGorod.SelectedItems[0];
                     string query = "DELETE FROM [dbo].[City] WHERE [Id] =" + row["Id"];
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
+                    MessageBox.Show(db.RunInsertUpdateDelete(query));
                     LoadTable();
                 }
             }
@@ -129,25 +116,19 @@ namespace Judo
         private void but2_Click(object sender, RoutedEventArgs e)//Редактировать
         {
             VisibleTrue();
-            SqlConnection conn = new SqlConnection(connesctionString);
+           
             if (dataGridGorod.SelectedItems.Count > 0)
             {
                 gb1.Header = "Редактировать город";
                 DataRowView row = (DataRowView)dataGridGorod.SelectedItems[0];
-
                 string query = "SELECT [Id] as 'Id', [Name] as 'Название', [PochtaIndex] as 'Почтовый индекс' from City Where [Id]= '" + row["Id"] + "'";
-                conn.Open();
-                SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                DataSet myDS = new DataSet();
-                da.Fill(myDS, "City");
-
-                tb1.Text = myDS.Tables["City"].Rows[0][1].ToString();
-                tb2.Text = myDS.Tables["City"].Rows[0][2].ToString();
-                conn.Close();
+                db.RunSelect(query);
+                tb1.Text = dt.Rows[0][1].ToString();
+                tb2.Text = dt.Rows[0][2].ToString();
             }
             else
             {
-                VisibleFalse();
+                VisibleFalse(); 
                 MessageBox.Show("Выберите строку!");
             }
         }
@@ -155,7 +136,7 @@ namespace Judo
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             App.Current.Windows.OfType<FormAdmin>().First().Show();
-    }
+        }
     }
 }
     
