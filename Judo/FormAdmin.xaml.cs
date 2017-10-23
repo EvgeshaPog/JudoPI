@@ -84,5 +84,12 @@ namespace Judo
         {
             App.Current.Windows.OfType<MainWindow>().First().Show();
         }
+
+        private void MenuItem_Click7(object sender, RoutedEventArgs e)
+        {
+            Users u = new Users();
+            u.Show();
+            Hide();
+        }
     }
 }

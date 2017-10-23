@@ -13,6 +13,8 @@
                     <MenuItem Name="MIExit" Header="Выход" Click="MenuItem_Click_6"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Справочная информация">
+                    <MenuItem Header="Пользователи" Click="MenuItem_Click7"></MenuItem>
+                    <Separator></Separator>
                     <MenuItem Header="Города" Click="MenuItem_Click"></MenuItem>
                     <MenuItem Header="Спортивные клубы" Click="MenuItem_Click_1"></MenuItem>
                     <Separator></Separator>
