@@ -5,12 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-        Title="Gorod" Height="350" Width="416">
+        Title="Gorod" Height="350" Width="416" Closing="Window_Closing">
     <Grid Margin="0,0,-107,9">
-        <Label x:Name="label" Content="Города" HorizontalAlignment="Left" Margin="19,14,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="28,44,0,0" VerticalAlignment="Top" Height="256" Width="260"/>
-        <Button x:Name="but1" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="86" Margin="303,44,0,0"/>
-        <Button x:Name="but2" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="86" Margin="303,72,0,0"/>
         <GroupBox x:Name="gb1" Header="Добавить город" HorizontalAlignment="Left" Margin="28,45,0,0" VerticalAlignment="Top" Height="152" Width="250">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -18,15 +14,21 @@
                     <ColumnDefinition Width="99*"/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="label1" Content="Название города" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.263,0.208"/>
+                <TextBox x:Name="tb2" HorizontalAlignment="Left" Height="23" Margin="16,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
                 <TextBox x:Name="tb1" HorizontalAlignment="Left" Height="23" Margin="16,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="184" Grid.ColumnSpan="2"/>
                 <Label x:Name="label2" Content="Почтовый индекс" HorizontalAlignment="Left" Margin="13,45,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
             </Grid>
         </GroupBox>
 
-        <Button x:Name="but3" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="86" Margin="304,124,0,0"/>
-        <Button x:Name="but4" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="103,162,0,0"/>
-        <TextBox x:Name="tb2" HorizontalAlignment="Left" Height="23" Margin="52,128,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="but5" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="190,162,0,0"/>
+        <Label x:Name="label" Content="Города" HorizontalAlignment="Left" Margin="19,14,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="but1" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="86" Margin="303,44,0,0" Click="but1_Click"/>
+        <Button x:Name="but2" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="86" Margin="303,72,0,0" Click="but2_Click" AutomationProperties.IsRowHeader="True"/>
+
+        <Button x:Name="but3" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="86" Margin="304,124,0,0" Click="but3_Click"/>
+        <Button x:Name="but4" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="103,162,0,0" Click="but4_Click"/>
+
+        <Button x:Name="but5" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="190,162,0,0" Click="but5_Click"/>
+        <DataGrid x:Name="dataGridGorod" HorizontalAlignment="Left" Margin="28,48,0,0" VerticalAlignment="Top" Height="256" Width="260"/>
 
 
     </Grid>

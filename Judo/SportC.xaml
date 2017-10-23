@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-        Title="SportC" Height="300" Width="350">
+        Title="SportC" Height="300" Width="350" Closing="Window_Closing">
     <Grid Margin="0,0,-8,0">
         <Label x:Name="label" Content="Спортивные клубы" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="9,7,0,0" FontWeight="Bold"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="12,34,0,0" VerticalAlignment="Top" Height="221" Width="210"/>
         <GroupBox x:Name="gb1" Header="Добавить спортивный клуб" HorizontalAlignment="Left" Margin="12,35,0,0" VerticalAlignment="Top" Height="116" Width="210"/>
         <TextBox x:Name="tb1" HorizontalAlignment="Left" Height="23" Margin="25,82,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="182"/>
-        <Button x:Name="but1" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="236,35,0,0"/>
-        <Button x:Name="but2" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="236,63,0,0"/>
-        <Button x:Name="but3" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="236,110,0,0"/>
-        <Button x:Name="but4" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="58,116,0,0"/>
-        <Button x:Name="but5" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="138,116,0,0"/>
+        <Button x:Name="but1" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="236,35,0,0" Click="but1_Click"/>
+        <Button x:Name="but2" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="236,63,0,0" Click="but2_Click"/>
+        <Button x:Name="but3" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="236,110,0,0" Click="but3_Click"/>
+        <Button x:Name="but4" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="58,116,0,0" Click="but4_Click"/>
+        <Button x:Name="but5" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="138,116,0,0" Click="but5_Click"/>
         <Label x:Name="label1" Content="Наименование" HorizontalAlignment="Left" Margin="20,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.237,-0.231"/>
+        <DataGrid x:Name="dataGridSportC" HorizontalAlignment="Left" Margin="12,34,0,0" VerticalAlignment="Top" Height="221" Width="210"/>
 
     </Grid>
 </Window>

@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-        Title="Mat" Height="308.571" Width="445.714">
+        Title="Mat" Height="308.571" Width="445.714" Closing="Window_Closing">
     <Grid>
         <Label x:Name ="lb" Content="Маты" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Arial" FontSize="14" Margin="23,20,0,0" FontWeight="Bold"/>
 
-        <Button x:Name ="butAdd" Content="Добавить" HorizontalAlignment="Left" Margin="300,46,0,0" VerticalAlignment="Top" Width="87" FontFamily="Arial"/>
-        <Button x:Name ="butEdit" Content="Редактировать" HorizontalAlignment="Left" Margin="300,75,0,0" VerticalAlignment="Top" Width="87"/>
-        <Button x:Name ="ButDelete" Content="Удалить" HorizontalAlignment="Left" Margin="300,140,0,0" VerticalAlignment="Top" Width="87"/>
+        <Button x:Name ="butAdd" Content="Добавить" HorizontalAlignment="Left" Margin="300,46,0,0" VerticalAlignment="Top" Width="87" FontFamily="Arial" Click="butAdd_Click"/>
+        <Button x:Name ="butEdit" Content="Редактировать" HorizontalAlignment="Left" Margin="300,75,0,0" VerticalAlignment="Top" Width="87" Click="butEdit_Click"/>
+        <Button x:Name ="butDelete" Content="Удалить" HorizontalAlignment="Left" Margin="300,140,0,0" VerticalAlignment="Top" Width="87" Click="butDelete_Click"/>
         <DataGrid Name ="dg" HorizontalAlignment="Left" Height="194" Margin="23,46,0,0" VerticalAlignment="Top" Width="259"/>
-        <GroupBox Name ="gb" Header="" HorizontalAlignment="Left" Height="194" VerticalAlignment="Top" Width="259" Margin="23,46,0,0">
+        <GroupBox Name ="gb" Header="" HorizontalAlignment="Left" Height="194" VerticalAlignment="Top" Width="259" Margin="23,46,0,0" Visibility="Hidden">
             <Grid HorizontalAlignment="Left" Height="184" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="255">
                 <Label Name ="lbName" Content="Наименование" HorizontalAlignment="Left" Margin="46,32,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
                 <TextBox Name ="tbName" HorizontalAlignment="Left" Height="23" Margin="45,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181" RenderTransformOrigin="0.5,0.5" FontFamily="Arial">
@@ -26,8 +26,8 @@
                         </TransformGroup>
                     </TextBox.RenderTransform>
                 </TextBox>
-                <Button Name ="butOK" Content="ОК" HorizontalAlignment="Left" Margin="46,139,0,0" VerticalAlignment="Top" Width="75" FontFamily="Arial"/>
-                <Button Name ="butCancel" Content="Отмена" HorizontalAlignment="Left" Margin="149,139,0,0" VerticalAlignment="Top" Width="75" FontFamily="Arial"/>
+                <Button Name ="butOK" Content="ОК" HorizontalAlignment="Left" Margin="46,139,0,0" VerticalAlignment="Top" Width="75" FontFamily="Arial" Click="butOK_Click"/>
+                <Button Name ="butCancel" Content="Отмена" HorizontalAlignment="Left" Margin="149,139,0,0" VerticalAlignment="Top" Width="75" FontFamily="Arial" Click="butCancel_Click"/>
             </Grid>
         </GroupBox>
 
