@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
+using System.Data.OleDb;
 
 namespace Judo
 {
@@ -35,7 +36,7 @@ namespace Judo
             dgCompetitors.SelectedIndex = dgCompetitors.Items.IndexOf(row);
             VisibleFalse();
         }
-        
+
         private void butAdd_Click(object sender, RoutedEventArgs e)
         {
             groupBox.Header = "Добавление";
@@ -81,16 +82,37 @@ namespace Judo
                 DataRowView row = dgCompetitors.Items[rowCurrent] as DataRowView;
                 dgCompetitors.SelectedIndex = dgCompetitors.Items.IndexOf(row);
             }
+            else if (flag == butImport)
+            {
+                InsertCompetitorFromDataGrid();
+                InitDataСompetitors();
+                DataRowView row = dgCompetitors.Items[dgCompetitors.Items.Count - 1] as DataRowView;
+                dgCompetitors.SelectedIndex = dgCompetitors.Items.IndexOf(row);
+            }
         }
 
         private void dpBirth_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
+            tbAge.Text = GetAge(dpBirth.Text).ToString();
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            App.Current.Windows.OfType<FormAdmin>().First().Show();
+        }
+        private void butImport_Click(object sender, RoutedEventArgs e)
+        {
+            VisibleTrueImport();
+            ImportExcel();
+            flag = butImport;
+        }
+        private int GetAge(string dateBirth)
+        {
             DateTime dateNow = DateTime.Now;
-            DateTime clientyear = Convert.ToDateTime(dpBirth.Text);
+            DateTime clientyear = Convert.ToDateTime(dateBirth);
             int year = dateNow.Year - clientyear.Year;
             if (dateNow.Month < clientyear.Month ||
                 (dateNow.Month == clientyear.Month && dateNow.Day < clientyear.Day)) year--;
-            tbAge.Text = year.ToString();
+            return year;
         }
         private void InitDataСompetitors()
         {
@@ -121,8 +143,8 @@ namespace Judo
                 string query = "Insert into People (FIO, DateOfBirth, Id_SportClub,Id_City, Street, Weight, Age) values('"
                                 + tbLastName.Text + " " + tbFirstName.Text + " " + tbPatronymic.Text + "','"
                                 + Convert.ToDateTime(dpBirth.Text).ToString("yyyy-MM-dd") + "','" + Convert.ToInt32(cbSportClub.SelectedValue.ToString())
-                                + "','" + Convert.ToInt32(cbCity.SelectedValue.ToString()) + "','" + tbStret.Text + Convert.ToDouble(tbWeight.Text)
-                                + "','" + Convert.ToInt32(tbAge.Text) + "','" + Convert.ToDecimal(tbWeight.Text) + "')";
+                                + "','" + Convert.ToInt32(cbCity.SelectedValue.ToString()) + "','" + tbStret.Text
+                                + "','" + Convert.ToInt32(tbWeight.Text) + "','" + Convert.ToDouble(tbAge.Text) + "')";
 
                 MessageBox.Show(sql.RunInsertUpdateDelete(query));
                 VisibleFalse();
@@ -146,11 +168,11 @@ namespace Judo
         }
         private void DeleteCompetitor()
         {
-            string query = "SELECT Id from PeopleBattleGroup where People_Id='" + Convert.ToInt32(((DataRowView)dgCompetitors.SelectedItems[dgCompetitors.SelectedIndex]).Row[0].ToString()) + "'";
+            string query = "SELECT Id from PeopleBattleGroup where People_Id='" + Convert.ToInt32(((DataRowView)dgCompetitors.Items[dgCompetitors.SelectedIndex]).Row[0].ToString()) + "'";
             DataTable dt = sql.RunSelect(query);
             if (dt.Rows.Count == 0)
             {
-                string qDelete = "Delete from People   where Id = '" + Convert.ToInt32(((DataRowView)dgCompetitors.SelectedItems[dgCompetitors.SelectedIndex]).Row[0].ToString()) + "'";
+                string qDelete = "Delete from People   where Id = '" + Convert.ToInt32(((DataRowView)dgCompetitors.Items[dgCompetitors.SelectedIndex]).Row[0].ToString()) + "'";
                 MessageBox.Show(sql.RunInsertUpdateDelete(qDelete));
             }
             else MessageBox.Show("Нельзя удалить данного участника! Участник есть в бое!");
@@ -180,18 +202,34 @@ namespace Judo
             (groupBox.Content as Grid).Visibility = Visibility.Visible;
             groupBox.Visibility = Visibility.Visible;
             dgCompetitors.Visibility = Visibility.Hidden;
+            dgCompetitorsLoad.Visibility = Visibility.Hidden;
             butAdd.IsEnabled = false;
             butDelete.IsEnabled = false;
             butEdit.IsEnabled = false;
+            butImport.IsEnabled = false;
         }
         private void VisibleFalse()
         {
             (groupBox.Content as Grid).Visibility = Visibility.Hidden;
             groupBox.Visibility = Visibility.Hidden;
+            dgCompetitorsLoad.Visibility = Visibility.Hidden;
             dgCompetitors.Visibility = Visibility.Visible;
             butAdd.IsEnabled = true;
             butDelete.IsEnabled = true;
             butEdit.IsEnabled = true;
+            butImport.IsEnabled = true;
+            ClearTextBox();
+        }
+        private void VisibleTrueImport()
+        {
+            (groupBox.Content as Grid).Visibility = Visibility.Visible;
+            groupBox.Visibility = Visibility.Visible;
+            dgCompetitors.Visibility = Visibility.Hidden;
+            dgCompetitorsLoad.Visibility = Visibility.Visible;
+            butAdd.IsEnabled = false;
+            butDelete.IsEnabled = false;
+            butEdit.IsEnabled = false;
+            butImport.IsEnabled = false;
             ClearTextBox();
         }
         private void ClearTextBox()
@@ -204,16 +242,124 @@ namespace Judo
                     ((ComboBox)ctl).SelectedIndex = -1;
             }
             dpBirth.Text = DateTime.Now.ToString();
-        }        
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            App.Current.Windows.OfType<FormAdmin>().First().Show();
         }
-
-        private void but1_Click(object sender, RoutedEventArgs e)
+        private void ClearDataGrid()
         {
+            foreach (Control ctl in containersGb.Children)
+            {
+                if (ctl.GetType() == typeof(DataGrid))
+                    ((DataGrid)ctl).Items.Clear();
+            }
+        }
+        private void ImportExcel()
+        {
+            DataTable dtLoad = new DataTable();
+           // DataTable dtLoad2 = new DataTable();
+            Microsoft.Win32.OpenFileDialog openDialog = new Microsoft.Win32.OpenFileDialog();
+            openDialog.Filter = "Файл Excel|*.XLSX;*.XLS";
+            var result = openDialog.ShowDialog();
+            if (result == false)
+            {
+                MessageBox.Show("Файл не выбран!", "Информация", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                return;
+            }
+            //string fileName = System.IO.Path.GetFileName(openDialog.FileName);
+            Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
+            //Открываем книгу.                                                                                                                                                        
+            Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Open(openDialog.FileName, 0, false, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+            //Выбираем таблицу(лист).
+            Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet = ObjWorkBook.Worksheets.get_Item(1);// получаем ссылку на первый лист //
 
+            var lastCell = ObjWorkSheet.Cells.SpecialCells(Microsoft.Office.Interop.Excel.XlCellType.xlCellTypeLastCell);
+            dtLoad.Columns.Add("FIO");
+            dtLoad.Columns.Add("DateOfBirth");
+            dtLoad.Columns.Add("Weight");
+            dtLoad.Columns.Add("SportClub");
+            dtLoad.Columns.Add("City");
+            dtLoad.Columns.Add("Street");
+            for (int i = 0; i < (int)lastCell.Column; i++)
+            {
+                for (int j = 0; j < (int)lastCell.Row; j++)
+                {
+                    if (ObjWorkSheet.Cells[j + 2, i + 1].Text.ToString().Trim() != null&& ObjWorkSheet.Cells[j + 2, i + 1].Text.ToString().Trim() !="")
+                    {
+                        dtLoad.Rows.Add();
+                        dtLoad.Rows[j][i] = ObjWorkSheet.Cells[j + 2, i + 1].Text.ToString();//считал текст
+                    }
+                }
+            }
+
+            ObjWorkBook.Close(false, Type.Missing, Type.Missing); //закрыть не сохраняя
+            ObjExcel.Quit(); // вышел из Excel
+            GC.Collect(); // убрал за собой
+            
+            //for (int j = 0; j < dtLoad.Rows.Count; j++)
+            //{
+            //    if (dtLoad.Rows[j][0].ToString().Trim() != null|| dtLoad.Rows[j][0].ToString().Trim() !="")
+            //        {
+            //            dtLoad2.Rows.Add(dtLoad.Rows[j]);
+            //        }
+            //}
+            dgCompetitorsLoad.ItemsSource = dtLoad.DefaultView;
+
+        }
+        private void InsertCompetitorFromDataGrid()
+        {
+            string query = "", fio = "", street = "";
+            DateTime dateBirth;
+            string[] city = new string[2];
+            double weight = 0;
+            int age = 0, idCity=0, idSportClub=0;
+            DataRowView row;
+            for (int i = 0; i < dgCompetitorsLoad.Items.Count; i++)
+            {
+                row = dgCompetitorsLoad.Items[i] as DataRowView;
+                if (row.Row[0].ToString()!=null && row.Row[0].ToString()!="")
+                {
+                    
+                    fio = row.Row[0].ToString();
+                    dateBirth = Convert.ToDateTime(row.Row[1].ToString());
+                    weight = Convert.ToDouble(row.Row[2].ToString());
+                    idSportClub = GetIdSportClub(row.Row[3].ToString());
+                    city = row.Row[4].ToString().Split(' ');
+                    idCity = GetIdCity(city[1], city[0]);
+                    street = row.Row[5].ToString();
+                    age = GetAge(row.Row[1].ToString());
+                    query = "Insert into People (FIO, DateOfBirth, Id_SportClub,Id_City, Street, Weight, Age) values('"
+                            + fio + "','" + dateBirth + "','" + idSportClub + "','" + idCity + "','"
+                            + street + "','" + weight + "','" + age + "')";
+                    sql.RunInsertUpdateDelete(query);
+                }
+            }
+            VisibleFalse();
+        }
+        private int GetIdSportClub(string sportClub)
+        {
+            string query = @"SELECT Id FROM SportClub Where Name='" + sportClub + "'";
+            DataTable dt = sql.RunSelect(query);
+            if (dt.Rows.Count > 0)
+                return Convert.ToInt32(dt.Rows[0][0].ToString());
+            else
+            {
+                query = @"Insert into SportClub (Name) values('" + sportClub + "')";
+                sql.RunInsertUpdateDelete(query);
+                query = @"SELECT Id FROM SportClub Where Name='" + sportClub + "'";
+                return Convert.ToInt32(sql.RunSelect(query).Rows[0][0].ToString());
+            }
+        }
+        private int GetIdCity(string city, string index)
+        {
+            string query = @"SELECT Id FROM City Where Name='" + city + "'";
+            DataTable dt = sql.RunSelect(query);
+            if (dt.Rows.Count > 0)
+                return Convert.ToInt32(dt.Rows[0][0].ToString());
+            else
+            {
+                query = @"Insert into City (Name, PochtaIndex) values('" + city + "', '" + index + "')";
+                sql.RunInsertUpdateDelete(query);
+                query = @"SELECT Id FROM City Where Name='" + city + "'";
+                return Convert.ToInt32(sql.RunSelect(query).Rows[0][0].ToString());
+            }
         }
     }
 }

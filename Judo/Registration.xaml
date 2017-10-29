@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="Регистрация участников" Height="405.138" Width="808.483" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Grid>
-        <DataGrid x:Name="dgCompetitors" HorizontalAlignment="Left" Margin="38,54,0,0" VerticalAlignment="Top" Width="576" Height="301" CanUserResizeRows="False" CanUserResizeColumns="False">
+        <DataGrid x:Name="dgCompetitors" HorizontalAlignment="Left" Margin="38,54,0,0" VerticalAlignment="Top" Width="576" Height="301" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Header="Код" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding FIO}" Header="ФИО"/>
-                <DataGridTextColumn Binding="{Binding DateOfBirth}"  Header="Дата рождения"/>
+                <DataGridTextColumn Binding="{Binding DateOfBirth, StringFormat='dd.mm.yyyy'}"  Header="Дата рождения"/>
                 <DataGridTextColumn Binding="{Binding Age}"  Header="Возраст"/>
                 <DataGridTextColumn Binding="{Binding Weight}"  Header="Вес"/>
                 <DataGridTextColumn Binding="{Binding SportClub}"  Header="Спортивный клуб" HeaderStringFormat=""/>
@@ -34,7 +34,7 @@
                 <DatePicker x:Name="dpBirth" HorizontalAlignment="Left" Margin="21,93,0,0" VerticalAlignment="Top" Width="140" SelectedDateChanged="dpBirth_SelectedDateChanged"/>
                 <Label x:Name="label_Copy4" Content="Дата рождения" HorizontalAlignment="Left" Margin="22,66,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="label1_Copy" Content="Возвраст" HorizontalAlignment="Left" Margin="180,66,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="tbAge" HorizontalAlignment="Left" Height="23" Margin="180,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="59" IsReadOnlyCaretVisible="True"/>
+                <TextBox x:Name="tbAge" HorizontalAlignment="Left" Height="23" Margin="180,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="59" IsReadOnlyCaretVisible="True" IsEnabled="False"/>
                 <Label x:Name="label_Copy5" Content="Вес" HorizontalAlignment="Left" Margin="258,66,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.552,0.231"/>
                 <TextBox x:Name="tbWeight" HorizontalAlignment="Left" Height="23" Margin="258,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62"/>
                 <ComboBox x:Name="cbSportClub" HorizontalAlignment="Left" Margin="21,201,0,0" VerticalAlignment="Top" Width="218"/>
@@ -42,13 +42,23 @@
                 <ComboBox x:Name="cbCity" HorizontalAlignment="Left" Margin="21,148,0,0" VerticalAlignment="Top" Width="140"/>
                 <Button x:Name="butSave" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="304,252,0,0" Click="butSave_Click"/>
                 <Button x:Name="butCancel" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="428,252,0,0" Click="butCancel_Click"/>
-
+                <DataGrid x:Name="dgCompetitorsLoad" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="544" Height="230" CanUserResizeRows="False" CanUserResizeColumns="False" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding FIO}" Header="ФИО"/>
+                        <DataGridTextColumn Binding="{Binding DateOfBirth, StringFormat='dd.mm.yyyy'}"  Header="Дата рождения"/>
+                        <DataGridTextColumn Binding="{Binding Weight}"  Header="Вес"/>
+                        <DataGridTextColumn Binding="{Binding SportClub}"  Header="Спортивный клуб" HeaderStringFormat=""/>
+                        <DataGridTextColumn Binding="{Binding City}"  Header="Родной город"/>
+                        <DataGridTextColumn Binding="{Binding Street}"  Header="Улица"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </Grid>
         </GroupBox>
         <Label x:Name="label_Copy2" Content="Участники" HorizontalAlignment="Left" Margin="38,18,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Width="106"/>
         <Button x:Name="butAdd" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="642,61,0,0" Click="butAdd_Click"/>
         <Button x:Name="butEdit" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="642,86,0,0" Click="butEdit_Click"/>
         <Button x:Name="butDelete" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="642,136,0,0" Click="butDelete_Click"/>
+        <Button x:Name="butImport" Content="Загрузить из файла" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="642,186,0,0" Click="butImport_Click"/>
 
     </Grid>
 </Window>
