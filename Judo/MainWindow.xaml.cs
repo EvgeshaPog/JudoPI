@@ -72,10 +72,10 @@ namespace Judo
         {
             tbLogin.Text = "";
             tbPassword.Password = "";
-            //Gorod gorod = new Gorod();
-            //gorod.Show();
-            SportC S = new SportC();
-            S.Show();
+            Gorod gorod = new Gorod();
+            gorod.Show();
+            //SportC S = new SportC();
+            //S.Show();
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
