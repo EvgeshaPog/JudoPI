@@ -72,19 +72,16 @@ namespace Judo
         {
             tbLogin.Text = "";
             tbPassword.Password = "";
+            //Gorod gorod = new Gorod();
+            //gorod.Show();
+            //SportC S = new SportC();
+            //S.Show();
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
            FormGuest fg = new FormGuest();
             fg.Show();
-            Hide();
-        }
-
-        private void Hyperlink_Click_1(object sender, RoutedEventArgs e)
-        {
-            Skleroz s = new Skleroz();
-            s.Show();
             Hide();
         }
     }
