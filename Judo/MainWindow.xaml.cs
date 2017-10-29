@@ -72,8 +72,8 @@ namespace Judo
         {
             tbLogin.Text = "";
             tbPassword.Password = "";
-            Gorod gorod = new Gorod();
-            gorod.Show();
+            //Gorod gorod = new Gorod();
+            //gorod.Show();
             //SportC S = new SportC();
             //S.Show();
         }
