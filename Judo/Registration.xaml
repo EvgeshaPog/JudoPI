@@ -41,7 +41,7 @@
         </GroupBox>
         <Label x:Name="label_Copy2" Content="Участники" HorizontalAlignment="Left" Margin="38,18,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Width="106" Grid.ColumnSpan="2"/>
         <Button x:Name="but1" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="254,80,0,0" Grid.Column="2"/>
-        <Button x:Name="but2" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="254,108,0,0" Grid.Column="2"/>
+        <Button x:Name="but2" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="254,108,0,0" Grid.Column="2" Click="but2_Click"/>
         <Button x:Name="but3" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="254,160,0,0" Grid.Column="2"/>
 
     </Grid>

@@ -31,6 +31,7 @@ namespace Judo
 
         private void butAdd_Click(object sender, RoutedEventArgs e)
         {
+            
             VisibleTrue();
             groupBox.Header = "Добавить";
         }

@@ -23,34 +23,29 @@ namespace Judo
     /// </summary>
     public partial class SportC : Window
     {
-        string connesctionString = @"Data Source=ACER\MSSQLSERVER1;Initial Catalog=Djudo;Integrated Security=True";
+        SQLData db= new SQLData();
+        DataTable dt;
+      
         public SportC()
         {
             InitializeComponent();
             VisibleFalse();
             LoadTable();
+            dt = new DataTable();
         }
 
         private void but1_Click(object sender, RoutedEventArgs e)
         {
+            tb1.Clear();
             VisibleTrue();
             gb1.Header = "Добавить спортивный клуб";
         }
 
         public void LoadTable()// Вывод данных в таблицу
         {
-            //string connesctionString = @"Data Source=ACER\MSSQLSERVER1;Initial Catalog=Djudo;Integrated Security=True";
-            SqlConnection conn = new SqlConnection(connesctionString);
-            conn.Open();
-            string CmdString = "SELECT Id as 'ID', Name as 'Название клуба' FROM SportClub";
-            SqlCommand cmd = new SqlCommand(CmdString, conn);
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable("SportClub");
-            sda.Fill(dt);
+            dt =db.RunSelect("SELECT Id as 'ID', Name as 'Название клуба' FROM SportClub");
             dataGridSportC.ItemsSource = dt.DefaultView;
-            dataGridSportC.Columns[0].Visibility = Visibility.Hidden;
-            conn.Close();
-
+            //dataGridSportC.Columns[0].Visibility = Visibility.Hidden;
         }
         void VisibleFalse()
         {
@@ -73,19 +68,13 @@ namespace Judo
         private void but2_Click(object sender, RoutedEventArgs e)
         {
             VisibleTrue();
-            SqlConnection conn = new SqlConnection(connesctionString);
+          
             if (dataGridSportC.SelectedItems.Count > 0)
             {
                 gb1.Header = "Редактировать спортивный клуб";
                 DataRowView row = (DataRowView)dataGridSportC.SelectedItems[0];
-
-                string query = "SELECT [Id] as 'Id', [Name] as 'Название' from SportClub Where [Id]= '" + row["Id"] + "'";
-                conn.Open();
-                SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                DataSet myDS = new DataSet();
-                da.Fill(myDS, "SportClub");
-                tb1.Text = myDS.Tables["SportClub"].Rows[0][1].ToString();
-                conn.Close();
+                dt= db.RunSelect("SELECT [Id] as 'Id', [Name] as 'Название' from SportClub Where [Id]= '" + row["Id"] + "'");
+                tb1.Text = dt.Rows[0][1].ToString();
             }
             else
             {
@@ -100,13 +89,11 @@ namespace Judo
             {
                 if (MessageBox.Show("Вы действительно хотите удалить запись?", "Удаление записи", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
-                    SqlConnection conn = new SqlConnection(connesctionString);
+                
                     DataRowView row = (DataRowView)dataGridSportC.SelectedItems[0];
                     string query = "DELETE FROM [dbo].[SportClub] WHERE [Id] =" + row["Id"];
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
+                    MessageBox.Show(db.RunInsertUpdateDelete(query));
+          
                     LoadTable();
                 }
             }
@@ -124,23 +111,19 @@ namespace Judo
                 MessageBox.Show("Не все поля заполнены!");
                 return;
             }
-            SqlConnection conn = new SqlConnection(connesctionString);
+           
             if (gb1.Header.ToString() == "Добавить спортивный клуб")
             {
                 string query = "insert into [dbo].[SportClub] ([Name]) values  ('" + tb1.Text + "')";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                MessageBox.Show(db.RunInsertUpdateDelete(query));
+
             }
             if (gb1.Header.ToString() == "Редактировать спортивный клуб")
             {
                 DataRowView row = (DataRowView)dataGridSportC.SelectedItems[0];
                 string query = "update [dbo].[SportClub] set [Name]= '" + tb1.Text + "'  where Id = '" + row["Id"] + "'";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                MessageBox.Show(db.RunInsertUpdateDelete(query));
+
             }
             LoadTable();//вывод данных в таблицу
             VisibleFalse();
