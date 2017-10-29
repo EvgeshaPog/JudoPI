@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -102,18 +103,24 @@ namespace Judo
                 return;
             }
 
+            if (Regex.IsMatch(textBox_email.Text, @"\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\z") == false)
+            {
+                MessageBox.Show("Не правильно введен адрес почты. Повторите попытку.");
+                return;
+            }
+
             string FIO = textBox_F.Text + " " + textBox_I.Text + " " + textBox_O.Text;
             string admin = (CheckBoxAdmin.IsChecked == true) ? "1" : "0";
 
             if (groupBox.Header.ToString() == "Добавить")
             {
-                db.RunInsertUpdateDelete("insert into [dbo].[User] ([FIO], [Login], [Password], [Admin]) values  ('" + FIO + "', '" + textBox_Login.Text
+                db.RunInsertUpdateDelete("insert into [dbo].[User] ([FIO], [Email], [Login], [Password], [Admin]) values  ('" + FIO + "', '"+ textBox_email.Text+ "', '" + textBox_Login.Text
                     + "', '" + textBox_Password.Text + "', '" + admin + "')");
             }
             if (groupBox.Header.ToString() == "Редактировать")
             {
                 DataRowView row = (DataRowView)UsersDataGrid.SelectedItems[0];
-                db.RunInsertUpdateDelete("update [dbo].[User]  set [FIO]= '" + FIO + "', [Login]= '" + textBox_Login.Text + "', [Password]= '" +
+                db.RunInsertUpdateDelete("update [dbo].[User]  set [FIO]= '" + FIO + "', [Email]= '" + textBox_email.Text + "', [Login]= '" + textBox_Login.Text + "', [Password]= '" +
                     textBox_Password.Text + "', [Admin]= '" + admin + "' where Id = '" + row["Id"] + "'");
             }
 
@@ -123,7 +130,7 @@ namespace Judo
 
         public void LoadTable()
         {
-            DataTable datat = db.RunSelect("SELECT [Id] as 'Id', [FIO] as 'ФИО', [Login] as 'Логин', [Password] as 'Пароль', [Admin] as 'Администратор' FROM [dbo].[User]");
+            DataTable datat = db.RunSelect("SELECT [Id] as 'Id', [FIO] as 'ФИО', [Email] as 'Почта', [Login] as 'Логин', [Password] as 'Пароль', [Admin] as 'Администратор' FROM [dbo].[User]");
             UsersDataGrid.ItemsSource = datat.DefaultView;
             UsersDataGrid.Columns[0].Visibility = Visibility.Hidden;
         }
@@ -142,6 +149,11 @@ namespace Judo
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoadTable();
+        }
+
+        private void butOtm_Click(object sender, RoutedEventArgs e)
+        {
+            VisibleFalse();
         }
     }
 }
