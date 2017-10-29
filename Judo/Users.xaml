@@ -20,7 +20,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <DataGrid IsReadOnly="True"  SelectionMode="Single" SelectionUnit="FullRow" Margin="10,0,0,0" Name="UsersDataGrid" Height="339" VerticalAlignment="Top" HorizontalAlignment="Left" Width="502" AutomationProperties.IsRowHeader="True" AutomationProperties.IsColumnHeader="True" SelectionChanged="UsersDataGrid_SelectionChanged"/>
-        <GroupBox x:Name="groupBox"   Header="Добавление" HorizontalAlignment="Left" Margin="8,4,0,-5" VerticalAlignment="Top" Height="350" Width="491"  Foreground="#FF463D7A"  BorderBrush="#FF000089">
+        <GroupBox x:Name="groupBox"  Visibility="Hidden" Header="Добавление" HorizontalAlignment="Left" Margin="8,4,0,-5" VerticalAlignment="Top" Height="350" Width="491"  Foreground="#FF463D7A"  BorderBrush="#FF000089">
             <Grid HorizontalAlignment="Left" Margin="0,10,0,29" Width="489" Name="containerCanvas" >
                 <Label x:Name="label_F" Content="Фамилия" HorizontalAlignment="Left" Margin="21,14,0,0" VerticalAlignment="Top" Height="26" Width="60" Foreground="#FF463D7A"/>
                 <Label x:Name="label_I" Content="Имя" HorizontalAlignment="Left" Margin="177,14,0,0" VerticalAlignment="Top" Height="26" Width="33" Foreground="#FF463D7A"/>
