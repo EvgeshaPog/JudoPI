@@ -13,11 +13,11 @@ namespace Judo
     {
         //     string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=новая;Integrated Security=True";// РИНАТ Повелитель Класса SQLDATA
         //     string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=новая;Integrated Security=True";// Евгения Погорелова
-        //string connectionString = @"Data Source=DESKTOP-K1FLG14\SQLEXPRESS;Initial Catalog=Djudo;Integrated Security=True";// Юлия Носонова
+        string connectionString = @"Data Source=DESKTOP-K1FLG14\SQLEXPRESS;Initial Catalog=Djudo;Integrated Security=True";// Юлия Носонова
         //     string connectionString = @"Data Source=DESKTOP-I5A2IJU\SAGANKRIS;Initial Catalog=Djudo;Integrated Security=True";// Кристина Саган
         //     string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=новая;Integrated Security=True";// Екатерина Путенихина
         //    string connectionString = "Data Source=PC;Initial Catalog=Djudo;Integrated Security=True";// Алина Сафина
-        string connectionString = @"Data Source=ACER\MSSQLSERVER1;Initial Catalog=Djudo;Integrated Security=True";// Евгения Комлева
+        //string connectionString = @"Data Source=ACER\MSSQLSERVER1;Initial Catalog=Djudo;Integrated Security=True";// Евгения Комлева
         //     string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=новая;Integrated Security=True";// Светлана Зарипова
         //     string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=новая;Integrated Security=True";// Анастасия Обливанцева
 
