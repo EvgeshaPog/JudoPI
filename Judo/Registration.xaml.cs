@@ -29,6 +29,10 @@ namespace Judo
         Button flag;
         int rowCurrent = 0;
         int idComp = 0;
+
+        //закоментила потому что жаловался
+
+            /*
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             InitDataСompetitors();
@@ -361,7 +365,7 @@ namespace Judo
                 return Convert.ToInt32(sql.RunSelect(query).Rows[0][0].ToString());
             }
         }
-
+        */
         private void but2_Click(object sender, RoutedEventArgs e)
         {
 

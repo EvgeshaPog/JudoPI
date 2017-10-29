@@ -22,18 +22,17 @@
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Height="130" Width="167"/>
         <Label x:Name="lb" Content="Возрастной класс" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF463D7A"/>
-        <Button x:Name="butAdd" Content="Добавить" HorizontalAlignment="Left" Margin="190,36,0,0" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
-        <Button x:Name="butUpdate" Content="Редактировать" HorizontalAlignment="Left" Margin="190,61,0,0" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
-        <Button x:Name="butRemove" Content="Удалить" HorizontalAlignment="Left" Margin="190,86,0,0" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold" />
-        <GroupBox x:Name="groupBox" Header="Добавить" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" Height="138" Width="167" Foreground="#FF463D7A"  BorderBrush="#FF000089">
+        <Button x:Name="butAdd" Content="Добавить" HorizontalAlignment="Left" Margin="190,36,0,0" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold" Click="but1_Click"/>
+        <Button x:Name="butUpdate" Content="Редактировать" HorizontalAlignment="Left" Margin="190,61,0,0" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold" Click="but2_Click"/>
+        <Button x:Name="butRemove" Content="Удалить" HorizontalAlignment="Left" Margin="190,86,0,0" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold" Click="but3_Click"/>
+        <GroupBox x:Name="groupBox" Header="Добавить" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" Height="138" Width="167" Foreground="#FF463D7A"  BorderBrush="#FF000089" Panel.ZIndex="8">
             <Grid>
-
                 <Label x:Name="lbAgeOT" Content="Возраст от" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="69"  Foreground="#FF463D7A" />
                 <Label x:Name="lbAgeDO" Content="Возраст до" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="69"  Foreground="#FF463D7A"/>
-                <TextBox x:Name="tbAgeOT" Height="23" Margin="86,39,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="68"/>
-                <TextBox x:Name="tbAgeDO" Height="23" Margin="86,10,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="68"/>
-                <Button x:Name="butOK" Content="ОК" HorizontalAlignment="Left" Margin="10,83,0,0" VerticalAlignment="Top" Width="50" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
-                <Button x:Name="butCan" Content="Отмена" HorizontalAlignment="Left" Margin="86,83,0,0" VerticalAlignment="Top" Width="50" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+                <TextBox x:Name="tbAgeDO" Height="23" Margin="86,39,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="68"/>
+                <TextBox x:Name="tbAgeOT" Height="23" Margin="86,10,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="68"/>
+                <Button x:Name="butOK" Content="ОК" HorizontalAlignment="Left" Margin="10,83,0,0" VerticalAlignment="Top" Width="50" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold" Click="but4_Click"/>
+                <Button x:Name="butCan" Content="Отмена" HorizontalAlignment="Left" Margin="86,83,0,0" VerticalAlignment="Top" Width="50" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold" Click="but5_Click"/>
             </Grid>
         </GroupBox>
     </Grid>
