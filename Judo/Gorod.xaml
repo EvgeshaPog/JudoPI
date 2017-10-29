@@ -6,29 +6,38 @@
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
         Title="Город" Height="350" Width="416" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="#FFFAFAFF"/>
+            <GradientStop Color="#FF8684C7" Offset="0.996"/>
+            <GradientStop Color="#FFA09DF7" Offset="0.923"/>
+            <GradientStop Color="#FFC5C3FF" Offset="0.785"/>
+            <GradientStop Color="#FFE2E1FF" Offset="0.558"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid Margin="0,0,-107,9">
-        <GroupBox x:Name="gb1" Header="Добавить город" HorizontalAlignment="Left" Margin="28,45,0,0" VerticalAlignment="Top" Height="152" Width="250">
+        <GroupBox x:Name="gb1" Header="Добавить город" HorizontalAlignment="Left" Margin="28,45,0,0" VerticalAlignment="Top" Height="152" Width="250" Foreground="#FF463D7A"  BorderBrush="#FF000089" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="99*"/>
                 </Grid.ColumnDefinitions>
-                <Label x:Name="label1" Content="Название города" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.263,0.208"/>
+                <Label x:Name="label1" Content="Название города" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.263,0.208" Foreground="#FF463D7A"/>
                 <TextBox x:Name="tb2" HorizontalAlignment="Left" Height="23" Margin="16,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
                 <TextBox x:Name="tb1" HorizontalAlignment="Left" Height="23" Margin="16,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="184" Grid.ColumnSpan="2"/>
-                <Label x:Name="label2" Content="Почтовый индекс" HorizontalAlignment="Left" Margin="13,45,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                <Label x:Name="label2" Content="Почтовый индекс" HorizontalAlignment="Left" Margin="13,45,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="#FF463D7A"/>
             </Grid>
         </GroupBox>
 
-        <Label x:Name="label" Content="Города" HorizontalAlignment="Left" Margin="19,14,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
-        <Button x:Name="but1" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="86" Margin="303,44,0,0" Click="but1_Click"/>
-        <Button x:Name="but2" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="86" Margin="303,72,0,0" Click="but2_Click" AutomationProperties.IsRowHeader="True"/>
+        <Label x:Name="label" Content="Города" HorizontalAlignment="Left" Margin="19,14,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Foreground="#FF463D7A"/>
+        <Button x:Name="but1" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="86" Margin="303,44,0,0" Click="but1_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <Button x:Name="but2" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="86" Margin="303,72,0,0" Click="but2_Click" AutomationProperties.IsRowHeader="True" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
 
-        <Button x:Name="but3" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="86" Margin="304,124,0,0" Click="but3_Click"/>
-        <Button x:Name="but4" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="103,162,0,0" Click="but4_Click"/>
+        <Button x:Name="but3" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="86" Margin="304,124,0,0" Click="but3_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <Button x:Name="but4" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="103,162,0,0" Click="but4_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
 
-        <Button x:Name="but5" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="190,162,0,0" Click="but5_Click"/>
-        <DataGrid x:Name="dataGridGorod" HorizontalAlignment="Left" Margin="28,48,0,0" VerticalAlignment="Top" Height="256" Width="260"/>
+        <Button x:Name="but5" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="190,162,0,0" Click="but5_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <DataGrid x:Name="dataGridGorod" HorizontalAlignment="Left" Margin="28,43,0,0" VerticalAlignment="Top" Height="256" Width="260"/>
 
 
     </Grid>

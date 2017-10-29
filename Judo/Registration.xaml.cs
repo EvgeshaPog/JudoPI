@@ -361,5 +361,10 @@ namespace Judo
                 return Convert.ToInt32(sql.RunSelect(query).Rows[0][0].ToString());
             }
         }
+
+        private void but2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

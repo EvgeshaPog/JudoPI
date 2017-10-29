@@ -7,14 +7,23 @@
         mc:Ignorable="d"
         Title="Боевая группа" Height="300" Width="400" WindowStartupLocation="CenterScreen"
          Closing="Window_Closing">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="#FFFAFAFF"/>
+            <GradientStop Color="#FF8684C7" Offset="0.996"/>
+            <GradientStop Color="#FFA09DF7" Offset="0.923"/>
+            <GradientStop Color="#FFC5C3FF" Offset="0.785"/>
+            <GradientStop Color="#FFE2E1FF" Offset="0.558"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid Margin="0,0,-18,0" HorizontalAlignment="Left" Width="310">
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="8,103,-66,0" VerticalAlignment="Top" Height="134" Width="368"/>
-        <Label x:Name="label" Content="Боевые группы" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="8,57,0,0" VerticalAlignment="Top" Width="86"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,103,-68,0" VerticalAlignment="Top" Height="134" Width="368"/>
+        <Label x:Name="label" Content="Боевые группы" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF463D7A" Margin="8,0,0,0"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="12,57,0,0" VerticalAlignment="Top" Width="86"/>
         <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="126,57,0,0" VerticalAlignment="Top" Width="88"/>
-        <Label x:Name="label1" Content="Возраст" HorizontalAlignment="Left" Margin="4,34,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Возраст" HorizontalAlignment="Left" Margin="7,34,0,0" VerticalAlignment="Top" Foreground="#FF463D7A"/>
         <Label x:Name="label2" Content="Вес
-               " HorizontalAlignment="Left" Margin="122,35,0,0" VerticalAlignment="Top"/>
+               " HorizontalAlignment="Left" Margin="122,35,0,0" VerticalAlignment="Top" Foreground="#FF463D7A"/>
 
     </Grid>
 </Window>

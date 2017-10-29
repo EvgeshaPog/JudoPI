@@ -85,6 +85,9 @@
     <Compile Include="Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Skleroz.xaml.cs">
+      <DependentUpon>Skleroz.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SportC.xaml.cs">
       <DependentUpon>SportC.xaml</DependentUpon>
     </Compile>
@@ -105,8 +108,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FormAdmin.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="FormGuest.xaml">
       <SubType>Designer</SubType>
@@ -161,6 +164,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Skleroz.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SportC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,7 +206,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

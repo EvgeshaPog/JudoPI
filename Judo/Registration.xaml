@@ -6,6 +6,16 @@
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
         Title="Регистрация участников" Height="405.138" Width="808.483" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        //Title="Форма Регистрации" Height="484.138" Width="854.483" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="#FFFAFAFF"/>
+            <GradientStop Color="#FF8684C7" Offset="0.996"/>
+            <GradientStop Color="#FFA09DF7" Offset="0.923"/>
+            <GradientStop Color="#FFC5C3FF" Offset="0.785"/>
+            <GradientStop Color="#FFE2E1FF" Offset="0.558"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <DataGrid x:Name="dgCompetitors" HorizontalAlignment="Left" Margin="38,54,0,0" VerticalAlignment="Top" Width="576" Height="301" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" AutoGenerateColumns="False">
             <DataGrid.Columns>

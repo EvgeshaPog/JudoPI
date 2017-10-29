@@ -1,11 +1,11 @@
-﻿<Window x:Class="Judo.MenuJury"
+﻿<Window x:Class="Judo.Skleroz"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-        Title="Меню Жури" Height="300" Width="300" WindowStartupLocation="CenterScreen">
+        Title="Вспомнить все"  Height="229.07" Width="302.326" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
             <GradientStop Color="#FFFAFAFF"/>
@@ -16,6 +16,10 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        
+        <TextBox x:Name ="tbEmail" HorizontalAlignment="Left" Height="25" Margin="19,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
+
+        <Label x:Name ="lbEmail" Content="Введите Email, указанный при регистрации" HorizontalAlignment="Left" Margin="19,48,0,0" VerticalAlignment="Top" FontFamily="Arial" Foreground="#FF463D7A"/>
+        <Button x:Name ="butLogin" Content="Напомнить логин и пароль" HorizontalAlignment="Left" Margin="65,130,0,0" VerticalAlignment="Top" Width="176" FontFamily="Arial" Click="butLogin_Click" Height="26" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+
     </Grid>
 </Window>
