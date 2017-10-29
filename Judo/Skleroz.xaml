@@ -6,11 +6,20 @@
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
         Title="Вспомнить все"  Height="229.07" Width="302.326" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="#FFFAFAFF"/>
+            <GradientStop Color="#FF8684C7" Offset="0.996"/>
+            <GradientStop Color="#FFA09DF7" Offset="0.923"/>
+            <GradientStop Color="#FFC5C3FF" Offset="0.785"/>
+            <GradientStop Color="#FFE2E1FF" Offset="0.558"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <TextBox x:Name ="tbEmail" HorizontalAlignment="Left" Height="25" Margin="19,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
 
-        <Label x:Name ="lbEmail" Content="Введите Email, указанный при регистрации" HorizontalAlignment="Left" Margin="19,48,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
-        <Button x:Name ="butLogin" Content="Напомнить логин и пароль" HorizontalAlignment="Left" Margin="71,130,0,0" VerticalAlignment="Top" Width="163" FontFamily="Arial" Click="butLogin_Click" Height="26"/>
+        <Label x:Name ="lbEmail" Content="Введите Email, указанный при регистрации" HorizontalAlignment="Left" Margin="19,48,0,0" VerticalAlignment="Top" FontFamily="Arial" Foreground="#FF463D7A"/>
+        <Button x:Name ="butLogin" Content="Напомнить логин и пароль" HorizontalAlignment="Left" Margin="65,130,0,0" VerticalAlignment="Top" Width="176" FontFamily="Arial" Click="butLogin_Click" Height="26" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
 
     </Grid>
 </Window>

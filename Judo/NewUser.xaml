@@ -6,19 +6,28 @@
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
         Title="Регистрация" Height="350" Width="525" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="#FFFAFAFF"/>
+            <GradientStop Color="#FF8684C7" Offset="0.996"/>
+            <GradientStop Color="#FFA09DF7" Offset="0.923"/>
+            <GradientStop Color="#FFC5C3FF" Offset="0.785"/>
+            <GradientStop Color="#FFE2E1FF" Offset="0.558"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <TextBox x:Name ="tbFIO" HorizontalAlignment="Left" Height="25" Margin="136,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
 
-        <Label x:Name ="lbFIO" Content="ФИО" HorizontalAlignment="Left" Margin="136,30,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+        <Label x:Name ="lbFIO" Content="ФИО" HorizontalAlignment="Left" Margin="136,30,0,0" VerticalAlignment="Top" FontFamily="Arial" Foreground="#FF463D7A"/>
         <TextBox x:Name ="tbLogin" HorizontalAlignment="Left" Height="25" Margin="136,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
-        <Label x:Name ="lbLogin" Content="Логин" HorizontalAlignment="Left" Margin="136,82,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
-        <Label x:Name ="lbPassword" Content="Пароль" HorizontalAlignment="Left" Margin="136,132,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+        <Label x:Name ="lbLogin" Content="Логин" HorizontalAlignment="Left" Margin="136,82,0,0" VerticalAlignment="Top" FontFamily="Arial" Foreground="#FF463D7A"/>
+        <Label x:Name ="lbPassword" Content="Пароль" HorizontalAlignment="Left" Margin="136,132,0,0" VerticalAlignment="Top" FontFamily="Arial" Foreground="#FF463D7A"/>
         <PasswordBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="136,156,0,0" VerticalAlignment="Top" Width="258"/>
-        <CheckBox x:Name="chbAdmin" Content="Администратор" HorizontalAlignment="Left" Margin="136,241,0,0" VerticalAlignment="Top"/>
-        <Button x:Name ="butOK" Content="Ок" HorizontalAlignment="Left" Margin="136,275,0,0" VerticalAlignment="Top" Width="120" FontFamily="Arial" Click="butLogin_Click"/>
-        <Button x:Name ="butCansel" Content="Отмена" HorizontalAlignment="Left" Margin="274,275,0,0" VerticalAlignment="Top" Width="120" FontFamily="Arial" Click="butRegistration_Click"/>
+        <CheckBox x:Name="chbAdmin" Content="Администратор" HorizontalAlignment="Left" Margin="136,241,0,0" VerticalAlignment="Top" Foreground="#FF463D7A"/>
+        <Button x:Name ="butOK" Content="ОК" HorizontalAlignment="Left" Margin="136,275,0,0" VerticalAlignment="Top" Width="120" FontFamily="Arial" Click="butLogin_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <Button x:Name ="butCansel" Content="Отмена" HorizontalAlignment="Left" Margin="274,275,0,0" VerticalAlignment="Top" Width="120" FontFamily="Arial" Click="butRegistration_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
         <TextBox x:Name ="tbEmail" HorizontalAlignment="Left" Height="25" Margin="136,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
-        <Label x:Name ="lbEmail" Content="Email" HorizontalAlignment="Left" Margin="136,182,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+        <Label x:Name ="lbEmail" Content="Email" HorizontalAlignment="Left" Margin="136,182,0,0" VerticalAlignment="Top" FontFamily="Arial" Foreground="#FF463D7A"/>
 
     </Grid>
 </Window>
