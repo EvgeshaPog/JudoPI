@@ -23,26 +23,20 @@ namespace Judo
 
     {
 
-       string connectionString = @"Data Source=DESKTOP-I5A2IJU\SAGANKRIS;Initial Catalog=Djudo;Integrated Security=True";// Кристина Саган
-
+        SQLData db;
+        DataTable dt;
         public Mat()
         {
             InitializeComponent();
+            db = new SQLData();
+            dt = new DataTable();
             LoadTable();
+            
         }
 
         public void LoadTable()
         {
-           // string connectionString = @"Data Source=DESKTOP-I5A2IJU\SAGANKRIS;Initial Catalog=Djudo;Integrated Security=True";
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            string CmdString = "SELECT Id as 'ID', Name as 'Наименование' FROM Mat";
-            SqlCommand cmd = new SqlCommand(CmdString, connection);
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable("SportClub");
-            sda.Fill(dt);
-            dg.ItemsSource = dt.DefaultView;
-            connection.Close();
+            dg.ItemsSource = db.RunSelect("Select [ID] as id , Name as 'Наименование' FROM Mat").DefaultView;
 
         }
 
@@ -74,24 +68,18 @@ namespace Judo
 
         private void butEdit_Click(object sender, RoutedEventArgs e)
         {
-            
-            SqlConnection conn = new SqlConnection(connectionString);
+
             if (dg.SelectedItems.Count > 0)
             {
                 ChangeVisible();
                 gb.Header = "Редактирование мата";
-                DataRowView row = (DataRowView)dg.SelectedItems[0];
 
-                string query = "SELECT [Id] as 'Id', [Name] as 'Наименовние' from Mat Where [Id]= '" + row["Id"] + "'";
-                conn.Open();
-                SqlDataAdapter sda = new SqlDataAdapter(query, conn);
-                DataSet DS = new DataSet();
-                sda.Fill(DS, "Mat");
-                tbName.Text = DS.Tables["Mat"].Rows[0][1].ToString();
-                conn.Close();
+                string run = db.RunInsertUpdateDelete("SELECT  [Name] as 'Наименовние' from Mat ");
+                tbName.Text = ((DataRowView)dg.Items[dg.SelectedIndex]).Row[1].ToString();
+              
             }
             else
-            { 
+            {
                 MessageBox.Show("Выберите строку, которую необходимо отредактировать!");
             }
         }
@@ -104,23 +92,19 @@ namespace Judo
                 MessageBox.Show("Не все поля заполнены!");
                 return;
             }
-            SqlConnection conn = new SqlConnection(connectionString);
+           
             if (gb.Header.ToString() == "Добавление мата")
             {
-                string query = "insert into [dbo].[Mat] ([Name]) values  ('" + tbName.Text + "')";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                string tb = db.RunInsertUpdateDelete("insert into [dbo].[Mat] ([Name]) values  ('" + tbName.Text + "')");
+              
             }
             if (gb.Header.ToString() == "Редактирование мата")
             {
+
                 DataRowView row = (DataRowView)dg.SelectedItems[0];
-                string query = "update [dbo].[Mat] set [Name]= '" + tbName.Text + "'  where Id = '" + row["Id"] + "'";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                string query = "update [dbo].[Mat] set [Name]= '" + tbName.Text +  "' where Id = '" + row["Id"] + "'";
+                MessageBox.Show(db.RunInsertUpdateDelete(query));
+               
             }
             LoadTable();
             ChangeClear();
@@ -137,14 +121,8 @@ namespace Judo
             {
                 if (MessageBox.Show("Вы действительно хотите удалить запись?", "Удаление записи", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
-                    SqlConnection connection = new SqlConnection(connectionString);
-                    DataRowView row = (DataRowView)dg.SelectedItems[0];
-                    string query = "DELETE FROM [dbo].[Mat] WHERE [Id] =" + row["Id"];
-                    SqlCommand cmd = new SqlCommand(query, connection);
-                    connection.Open();
-                    cmd.ExecuteNonQuery();
-                    connection.Close();
-                    LoadTable();
+                     string query = db.RunInsertUpdateDelete("DELETE FROM [dbo].[Mat] where Id = '" + ((DataRowView)dg.Items[dg.SelectedIndex]).Row[0].ToString() + "'");
+                     LoadTable();
                 }
             }
             else
