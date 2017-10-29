@@ -18,7 +18,9 @@
         <PasswordBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="138,149,0,0" VerticalAlignment="Top" Width="258" Grid.ColumnSpan="2"/>
         <Button Name ="butLogin" Content="Вход" HorizontalAlignment="Left" Margin="138,250,0,0" VerticalAlignment="Top" Width="120" FontFamily="Arial" Grid.ColumnSpan="2" Click="butLogin_Click"/>
         <Button Name ="butRegistration" Content="Регистрация" HorizontalAlignment="Left" Margin="116,250,0,0" VerticalAlignment="Top" Width="120" FontFamily="Arial" Grid.Column="1" Click="butRegistration_Click"/>
-        <TextBlock Name ="tblForgot" HorizontalAlignment="Left" Margin="156,201,0,0" TextWrapping="Wrap" Text="Забыли пароль?" VerticalAlignment="Top" Width="111" FontFamily="Arial" Grid.ColumnSpan="2"/>
+        <TextBlock Name ="tblForgot" HorizontalAlignment="Left" Margin="156,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111" FontFamily="Arial" Grid.ColumnSpan="2">
+         <Hyperlink NavigateUri="Skleroz.xaml" Click="Hyperlink_Click_1" >Забыли пароль?</Hyperlink>
+        </TextBlock>
         <TextBlock Name ="tblGuest" HorizontalAlignment="Left" Margin="154,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Arial" Grid.Column="1">
         <Hyperlink NavigateUri="FormGuest.xaml" Click="Hyperlink_Click">Я гость</Hyperlink>
         </TextBlock>
