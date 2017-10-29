@@ -17,7 +17,7 @@
     </Window.Background>
     <Grid Margin="0,3,-8,-3">
         <Label x:Name="label" Content="Спортивные клубы" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="9,7,0,0" FontWeight="Bold" Foreground="#FF463D7A"/>
-        <GroupBox x:Name="gb1" Header="Добавить спортивный клуб" HorizontalAlignment="Left" Margin="12,35,0,0" VerticalAlignment="Top" Height="116" Width="210" Foreground="#FF463D7A" FontWeight="Bold" BorderBrush="#FF000089" />
+        <GroupBox x:Name="gb1" Header="Добавить спортивный клуб" HorizontalAlignment="Left" Margin="12,35,0,0" VerticalAlignment="Top" Height="116" Width="210" Foreground="#FF463D7A" BorderBrush="#FF000089" />
         <TextBox x:Name="tb1" HorizontalAlignment="Left" Height="23" Margin="25,82,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="182"/>
         <Button x:Name="but1" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="236,35,0,0" Click="but1_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
         <Button x:Name="but2" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="236,63,0,0" Click="but2_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>

@@ -6,20 +6,29 @@
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
        Title="Соревнования по дзюдо" Height="200" Width="300" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="#FFFAFAFF"/>
+            <GradientStop Color="#FF8684C7" Offset="0.996"/>
+            <GradientStop Color="#FFA09DF7" Offset="0.923"/>
+            <GradientStop Color="#FFC5C3FF" Offset="0.785"/>
+            <GradientStop Color="#FFE2E1FF" Offset="0.558"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,36,0,-91" VerticalAlignment="Top" Height="130" Width="167"/>
-        <Button x:Name="butAdd" Content="Добавить" HorizontalAlignment="Left" Margin="190,36,0,0" VerticalAlignment="Top" Width="90"/>
-        <Button x:Name="butUpdate" Content="Редактировать" HorizontalAlignment="Left" Margin="190,61,0,-6" VerticalAlignment="Top" Width="90" />
-        <Button x:Name="butRemove" Content="Удалить" HorizontalAlignment="Left" Margin="190,86,0,-31" VerticalAlignment="Top" Width="90"/>
-        <GroupBox x:Name="groupBox" Header="Весовой класс" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="156" Width="167">
+        <Button x:Name="butAdd" Content="Добавить" HorizontalAlignment="Left" Margin="190,36,0,0" VerticalAlignment="Top" Width="90" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <Button x:Name="butUpdate" Content="Редактировать" HorizontalAlignment="Left" Margin="190,61,0,-6" VerticalAlignment="Top" Width="90" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <Button x:Name="butRemove" Content="Удалить" HorizontalAlignment="Left" Margin="190,86,0,-31" VerticalAlignment="Top" Width="90" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <GroupBox x:Name="groupBox" Header="Весовой класс" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="156" Width="167" Foreground="#FF463D7A"  BorderBrush="#FF000089">
             <Grid>
 
-                <Label x:Name="lbOT" Content="Вес от" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="69" />
-                <Label x:Name="lbDO" Content="Вес до" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="69" />
-                <TextBox x:Name="tbOT" Height="23" Margin="86,39,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="68"/>
-                <TextBox x:Name="tbDO" Height="23" Margin="86,10,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="68"/>
-                <Button x:Name="butOK" Content="Ок" HorizontalAlignment="Left" Margin="10,83,0,0" VerticalAlignment="Top" Width="50" />
-                <Button x:Name="butCan" Content="Отмена" HorizontalAlignment="Left" Margin="86,83,0,0" VerticalAlignment="Top" Width="50" />
+                <Label x:Name="lbOT" Content="Вес от" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="69" Foreground="#FF463D7A"/>
+                <Label x:Name="lbDO" Content="Вес до" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="69" Foreground="#FF463D7A"/>
+                <TextBox x:Name="tbOT" Height="23" Margin="57,39,30,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="68"/>
+                <TextBox x:Name="tbDO" Height="23" Margin="57,11,30,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="68"/>
+                <Button x:Name="butOK" Content="Ок" HorizontalAlignment="Left" Margin="10,83,0,0" VerticalAlignment="Top" Width="50" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+                <Button x:Name="butCan" Content="Отмена" HorizontalAlignment="Left" Margin="86,83,0,0" VerticalAlignment="Top" Width="50" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
             </Grid>
         </GroupBox>
 
