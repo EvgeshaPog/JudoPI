@@ -80,5 +80,12 @@ namespace Judo
             fg.Show();
             Hide();
         }
+
+        private void Hyperlink_Click_1(object sender, RoutedEventArgs e)
+        {
+            Skleroz s = new Skleroz();
+            s.Show();
+            Hide();
+        }
     }
 }
