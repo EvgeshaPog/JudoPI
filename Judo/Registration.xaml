@@ -16,7 +16,7 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        <DataGrid x:Name="dgCompetitors" HorizontalAlignment="Left" Margin="38,54,0,0" VerticalAlignment="Top" Width="576" Height="301" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" AutoGenerateColumns="False" PreviewMouseDoubleClick="dgCompetitors_PreviewMouseDoubleClick" IsReadOnly="True">
+        <DataGrid x:Name="dgCompetitors" HorizontalAlignment="Left" Margin="38,54,0,0" VerticalAlignment="Top" Width="576" Height="301" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" AutoGenerateColumns="False" PreviewMouseDoubleClick="dgCompetitors_PreviewMouseDoubleClick" IsReadOnly="True" Foreground="#FF463D7A">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Header="Код" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding FIO}" Header="ФИО"/>
@@ -29,7 +29,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <GroupBox x:Name="groupBox" Header="Добавление" HorizontalAlignment="Left" Margin="38,52,0,0" VerticalAlignment="Top" Height="303" Width="576">
+        <GroupBox x:Name="groupBox" Header="Добавление" HorizontalAlignment="Left" Margin="38,52,0,0" VerticalAlignment="Top" Height="303" Width="576"  Foreground="#FF463D7A" BorderBrush="#FF000089">
             <Grid HorizontalAlignment="Left" Margin="0,10,-9,-22" Width="564" Name="containersGb">
                 <Label x:Name="label" Content="Фамилия" HorizontalAlignment="Left" Margin="22,12,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="label_Copy" Content="Имя" HorizontalAlignment="Left" Margin="180,12,0,0" VerticalAlignment="Top"/>
@@ -49,9 +49,9 @@
                 <ComboBox x:Name="cbSportClub" HorizontalAlignment="Left" Margin="21,201,0,0" VerticalAlignment="Top" Width="218"/>
                 <Label x:Name="label_Copy6" Content="Спортивный клуб" HorizontalAlignment="Left" Margin="22,175,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
                 <ComboBox x:Name="cbCity" HorizontalAlignment="Left" Margin="21,148,0,0" VerticalAlignment="Top" Width="140"/>
-                <Button x:Name="butSave" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="304,252,0,0" Click="butSave_Click"/>
-                <Button x:Name="butCancel" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="428,252,0,0" Click="butCancel_Click"/>
-                <DataGrid x:Name="dgCompetitorsLoad" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="544" Height="230" CanUserResizeRows="False" CanUserResizeColumns="False" AutoGenerateColumns="False">
+                <Button x:Name="butSave" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="304,252,0,0" Click="butSave_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+                <Button x:Name="butCancel" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="428,252,0,0" Click="butCancel_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+                <DataGrid x:Name="dgCompetitorsLoad" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="544" Height="230" CanUserResizeRows="False" CanUserResizeColumns="False" AutoGenerateColumns="False" Foreground="#FF463D7A">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding FIO}" Header="ФИО"/>
                         <DataGridTextColumn Binding="{Binding DateOfBirth, StringFormat='dd.mm.yyyy'}"  Header="Дата рождения"/>
@@ -63,11 +63,11 @@
                 </DataGrid>
             </Grid>
         </GroupBox>
-        <Label x:Name="label_Copy2" Content="Участники" HorizontalAlignment="Left" Margin="38,18,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Width="106"/>
-        <Button x:Name="butAdd" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="642,61,0,0" Click="butAdd_Click"/>
-        <Button x:Name="butEdit" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="642,86,0,0" Click="butEdit_Click"/>
-        <Button x:Name="butDelete" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="642,136,0,0" Click="butDelete_Click"/>
-        <Button x:Name="butImport" Content="Загрузить из файла" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="642,186,0,0" Click="butImport_Click"/>
+        <Label x:Name="label_Copy2" Content="Участники" HorizontalAlignment="Left" Margin="38,18,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Width="106" Foreground="#FF463D7A"/>
+        <Button x:Name="butAdd" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="642,61,0,0" Click="butAdd_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <Button x:Name="butEdit" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="642,86,0,0" Click="butEdit_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <Button x:Name="butDelete" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="642,136,0,0" Click="butDelete_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <Button x:Name="butImport" Content="Загрузить из файла" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="642,186,0,0" Click="butImport_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
 
     </Grid>
 </Window>
