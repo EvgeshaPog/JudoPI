@@ -6,17 +6,26 @@
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
         Title="Мат" Height="308.571" Width="445.714" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="#FFFAFAFF"/>
+            <GradientStop Color="#FF8684C7" Offset="0.996"/>
+            <GradientStop Color="#FFA09DF7" Offset="0.923"/>
+            <GradientStop Color="#FFC5C3FF" Offset="0.785"/>
+            <GradientStop Color="#FFE2E1FF" Offset="0.558"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
-        <Label x:Name ="lb" Content="Маты" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Arial" FontSize="14" Margin="23,20,0,0" FontWeight="Bold"/>
+        <Label x:Name ="lb" Content="Маты" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Arial" FontSize="14" Margin="23,20,0,0" FontWeight="Bold" Foreground="#FF463D7A"/>
 
-        <Button x:Name ="butAdd" Content="Добавить" HorizontalAlignment="Left" Margin="300,46,0,0" VerticalAlignment="Top" Width="87" FontFamily="Arial" Click="butAdd_Click"/>
-        <Button x:Name ="butEdit" Content="Редактировать" HorizontalAlignment="Left" Margin="300,75,0,0" VerticalAlignment="Top" Width="87" Click="butEdit_Click"/>
-        <Button x:Name ="butDelete" Content="Удалить" HorizontalAlignment="Left" Margin="300,140,0,0" VerticalAlignment="Top" Width="87" Click="butDelete_Click"/>
+        <Button x:Name ="butAdd" Content="Добавить" HorizontalAlignment="Left" Margin="300,46,0,0" VerticalAlignment="Top" Width="99" FontFamily="Arial" Click="butAdd_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <Button x:Name ="butEdit" Content="Редактировать" HorizontalAlignment="Left" Margin="300,75,0,0" VerticalAlignment="Top" Width="99" Click="butEdit_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <Button x:Name ="butDelete" Content="Удалить" HorizontalAlignment="Left" Margin="300,140,0,0" VerticalAlignment="Top" Width="99" Click="butDelete_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
         <DataGrid Name ="dg" HorizontalAlignment="Left" Height="194" Margin="23,46,0,0" VerticalAlignment="Top" Width="259"/>
-        <GroupBox Name ="gb" Header="" HorizontalAlignment="Left" Height="194" VerticalAlignment="Top" Width="259" Margin="23,46,0,0" Visibility="Hidden">
+        <GroupBox Name ="gb" Header="Добавление" HorizontalAlignment="Left" Height="194" VerticalAlignment="Top" Width="259" Margin="23,46,0,0" Foreground="#FF463D7A" Visibility="Hidden">
             <Grid HorizontalAlignment="Left" Height="184" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="255">
-                <Label Name ="lbName" Content="Наименование" HorizontalAlignment="Left" Margin="46,32,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
-                <TextBox Name ="tbName" HorizontalAlignment="Left" Height="23" Margin="45,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181" RenderTransformOrigin="0.5,0.5" FontFamily="Arial">
+                <Label Name ="lbName" Content="Наименование" HorizontalAlignment="Left" Margin="29,32,0,0" VerticalAlignment="Top" FontFamily="Arial" Foreground="#FF463D7A"/>
+                <TextBox Name ="tbName" HorizontalAlignment="Left" Height="23" Margin="28,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181" RenderTransformOrigin="0.5,0.5" FontFamily="Arial">
                     <TextBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -26,8 +35,8 @@
                         </TransformGroup>
                     </TextBox.RenderTransform>
                 </TextBox>
-                <Button Name ="butOK" Content="ОК" HorizontalAlignment="Left" Margin="46,139,0,0" VerticalAlignment="Top" Width="75" FontFamily="Arial" Click="butOK_Click"/>
-                <Button Name ="butCancel" Content="Отмена" HorizontalAlignment="Left" Margin="149,139,0,0" VerticalAlignment="Top" Width="75" FontFamily="Arial" Click="butCancel_Click"/>
+                <Button Name ="butOK" Content="ОК" HorizontalAlignment="Left" Margin="30,133,0,0" VerticalAlignment="Top" Width="75" FontFamily="Arial" Click="butOK_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+                <Button Name ="butCancel" Content="Отмена" HorizontalAlignment="Left" Margin="136,132,0,0" VerticalAlignment="Top" Width="75" FontFamily="Arial" Click="butCancel_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
             </Grid>
         </GroupBox>
 

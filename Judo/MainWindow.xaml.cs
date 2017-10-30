@@ -80,5 +80,18 @@ namespace Judo
             fg.Show();
             Hide();
         }
+
+
+        private void Hyperlink_Click_2(object sender, RoutedEventArgs e)
+        {
+            Skleroz s = new Skleroz();
+            s.Show();
+            Hide();
+        }
+
+        private void butLogin_MouseEnter(object sender, MouseEventArgs e)
+        {
+           // butLogin.Background = Brushes.Red;
+        }
     }
 }

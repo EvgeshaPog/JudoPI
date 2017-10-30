@@ -6,17 +6,26 @@
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
         Title="Форма Спортивных клуубов" Height="300" Width="350" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,-8,0">
-        <Label x:Name="label" Content="Спортивные клубы" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="9,7,0,0" FontWeight="Bold"/>
-        <GroupBox x:Name="gb1" Header="Добавить спортивный клуб" HorizontalAlignment="Left" Margin="12,35,0,0" VerticalAlignment="Top" Height="116" Width="210"/>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="#FFFAFAFF"/>
+            <GradientStop Color="#FF8684C7" Offset="0.996"/>
+            <GradientStop Color="#FFA09DF7" Offset="0.923"/>
+            <GradientStop Color="#FFC5C3FF" Offset="0.785"/>
+            <GradientStop Color="#FFE2E1FF" Offset="0.558"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid Margin="0,3,-8,-3">
+        <Label x:Name="label" Content="Спортивные клубы" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="9,7,0,0" FontWeight="Bold" Foreground="#FF463D7A"/>
+        <GroupBox x:Name="gb1" Header="Добавить спортивный клуб" HorizontalAlignment="Left" Margin="12,35,0,0" VerticalAlignment="Top" Height="116" Width="210" Foreground="#FF463D7A" BorderBrush="#FF000089" />
         <TextBox x:Name="tb1" HorizontalAlignment="Left" Height="23" Margin="25,82,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="182"/>
-        <Button x:Name="but1" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="236,35,0,0" Click="but1_Click"/>
-        <Button x:Name="but2" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="236,63,0,0" Click="but2_Click"/>
-        <Button x:Name="but3" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="236,110,0,0" Click="but3_Click"/>
-        <Button x:Name="but4" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="58,116,0,0" Click="but4_Click"/>
-        <Button x:Name="but5" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="138,116,0,0" Click="but5_Click"/>
-        <Label x:Name="label1" Content="Наименование" HorizontalAlignment="Left" Margin="20,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.237,-0.231"/>
-        <DataGrid x:Name="dataGridSportC" HorizontalAlignment="Left" Margin="12,34,0,0" VerticalAlignment="Top" Height="221" Width="210"/>
+        <Button x:Name="but1" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="236,35,0,0" Click="but1_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <Button x:Name="but2" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="236,63,0,0" Click="but2_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <Button x:Name="but3" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="236,110,0,0" Click="but3_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <Button x:Name="but4" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="58,116,0,0" Click="but4_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <Button x:Name="but5" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="138,116,0,0" Click="but5_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+        <Label x:Name="label1" Content="Наименование" HorizontalAlignment="Left" Margin="20,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.237,-0.231" Foreground="#FF463D7A"/>
+        <DataGrid x:Name="dataGridSportC" HorizontalAlignment="Left" Margin="11,40,0,0" VerticalAlignment="Top" Height="221" Width="210"/>
 
     </Grid>
 </Window>
