@@ -25,7 +25,7 @@
         <Button x:Name="but4" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="58,116,0,0" Click="but4_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
         <Button x:Name="but5" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="138,116,0,0" Click="but5_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
         <Label x:Name="label1" Content="Наименование" HorizontalAlignment="Left" Margin="20,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.237,-0.231" Foreground="#FF463D7A"/>
-        <DataGrid x:Name="dataGridSportC" HorizontalAlignment="Left" Margin="11,35,0,0" VerticalAlignment="Top" Height="221" Width="210"/>
+        <DataGrid x:Name="dataGridSportC" HorizontalAlignment="Left" Margin="11,40,0,0" VerticalAlignment="Top" Height="221" Width="210"/>
 
     </Grid>
 </Window>
