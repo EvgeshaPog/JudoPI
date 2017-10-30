@@ -87,5 +87,10 @@ namespace Judo
             s.Show();
             Hide();
         }
+
+        private void butLogin_MouseEnter(object sender, MouseEventArgs e)
+        {
+           // butLogin.Background = Brushes.Red;
+        }
     }
 }
