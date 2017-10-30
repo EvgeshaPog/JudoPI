@@ -304,14 +304,14 @@ namespace Judo
             DateTime dateBirth;
             string[] city = new string[2];
             double weight = 0;
-            int age = 0, idCity = 0, idSportClub = 0;
+            int age = 0, idCity=0, idSportClub=0;
             DataRowView row;
             for (int i = 0; i < dgCompetitorsLoad.Items.Count; i++)
             {
                 row = dgCompetitorsLoad.Items[i] as DataRowView;
                 if (row!=null)
                 {
-
+                    
                     fio = row.Row[0].ToString();
                     dateBirth = Convert.ToDateTime(row.Row[1].ToString());
                     weight = Convert.ToDouble(row.Row[2].ToString());
@@ -355,6 +355,11 @@ namespace Judo
                 query = @"SELECT Id FROM City Where Name='" + city + "'";
                 return Convert.ToInt32(sql.RunSelect(query).Rows[0][0].ToString());
             }
+        }
+
+        private void dgCompetitorsLoad_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
