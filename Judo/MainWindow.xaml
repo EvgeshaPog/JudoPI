@@ -28,7 +28,7 @@
         <Button Name ="butLogin" Content="Вход" HorizontalAlignment="Left" Margin="138,250,0,0" VerticalAlignment="Top" Width="120" FontFamily="Arial" Grid.ColumnSpan="2" Click="butLogin_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
         <Button Name ="butRegistration" Content="Регистрация" HorizontalAlignment="Left" Margin="116,250,0,0" VerticalAlignment="Top" Width="118" FontFamily="Arial" Grid.Column="1" Click="butRegistration_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
         <TextBlock Name ="tblForgot" HorizontalAlignment="Left" Margin="156,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111" FontFamily="Arial" Grid.ColumnSpan="2">
-         <Hyperlink NavigateUri="Skleroz.xaml" Click="Hyperlink_Click_1" >Забыли пароль?</Hyperlink>
+         <Hyperlink NavigateUri="Skleroz.xaml" >Забыли пароль?</Hyperlink>
         </TextBlock>
         <TextBlock Name ="tblGuest" HorizontalAlignment="Left" Margin="154,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Arial" Grid.Column="1" >
         <Hyperlink NavigateUri="FormGuest.xaml" Click="Hyperlink_Click">Я гость</Hyperlink>
