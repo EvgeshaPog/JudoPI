@@ -357,9 +357,13 @@ namespace Judo
             }
         }
 
-        private void dgCompetitorsLoad_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dgCompetitors_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            groupBox.Header = "Редактирование";
+            VisibleTrue();
+            LoadForEdit();
+            rowCurrent = dgCompetitors.SelectedIndex;
+            flag = butEdit;
         }
     }
 }

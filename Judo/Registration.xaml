@@ -16,7 +16,7 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        <DataGrid x:Name="dgCompetitors" HorizontalAlignment="Left" Margin="38,54,0,0" VerticalAlignment="Top" Width="576" Height="301" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" AutoGenerateColumns="False">
+        <DataGrid x:Name="dgCompetitors" HorizontalAlignment="Left" Margin="38,54,0,0" VerticalAlignment="Top" Width="576" Height="301" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" AutoGenerateColumns="False" PreviewMouseDoubleClick="dgCompetitors_PreviewMouseDoubleClick" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Header="Код" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding FIO}" Header="ФИО"/>
@@ -51,7 +51,7 @@
                 <ComboBox x:Name="cbCity" HorizontalAlignment="Left" Margin="21,148,0,0" VerticalAlignment="Top" Width="140"/>
                 <Button x:Name="butSave" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="304,252,0,0" Click="butSave_Click"/>
                 <Button x:Name="butCancel" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="428,252,0,0" Click="butCancel_Click"/>
-                <DataGrid x:Name="dgCompetitorsLoad" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="544" Height="230" CanUserResizeRows="False" CanUserResizeColumns="False" AutoGenerateColumns="False" SelectionChanged="dgCompetitorsLoad_SelectionChanged">
+                <DataGrid x:Name="dgCompetitorsLoad" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="544" Height="230" CanUserResizeRows="False" CanUserResizeColumns="False" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding FIO}" Header="ФИО"/>
                         <DataGridTextColumn Binding="{Binding DateOfBirth, StringFormat='dd.mm.yyyy'}"  Header="Дата рождения"/>
