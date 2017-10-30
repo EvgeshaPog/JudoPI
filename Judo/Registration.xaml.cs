@@ -21,6 +21,8 @@ namespace Judo
     /// </summary>
     public partial class Registration : Window
     {
+        List<string> AlreadyExistSportClub = new List<string>();
+        List<string> AlreadyExistCity = new List<string>();
         public Registration()
         {
             InitializeComponent();
@@ -32,7 +34,7 @@ namespace Judo
 
         //закоментила потому что жаловался
 
-            /*
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             InitDataСompetitors();
@@ -120,10 +122,10 @@ namespace Judo
         }
         private void InitDataСompetitors()
         {
-            string query = @"SELECT People.Id, People.FIO, People.DateOfBirth, People.Age, People.Weight,SportClub.Name as SportClub, City.Name AS City, People.Street 
-                           FROM     People INNER JOIN
-                                    SportClub ON People.Id_SportClub = SportClub.Id INNER JOIN
-                                    City ON People.Id_City = City.Id";
+            string query = @"SELECT People.Id, People.FIO, People.Date, People.Age, People.Weight,SportClub.Name as SportClub, City.Name AS City, People.Street 
+                       FROM     People INNER JOIN
+                                SportClub ON People.Id_SportClub = SportClub.Id INNER JOIN
+                                City ON People.Id_City = City.Id";
             dgCompetitors.ItemsSource = sql.RunSelect(query).DefaultView;
         }
         private void InitDateSportClub()
@@ -133,6 +135,23 @@ namespace Judo
             cbSportClub.DisplayMemberPath = "Name";
             cbSportClub.SelectedValuePath = "Id";
         }
+
+        private void ADDSportClub(string nameofSportClub)  // не доделал.  Смысл в том, чтобы добавить новый спорт клуб, если
+        {                                                  // 1) его нету в массиве AlreadyExistSportClub(уже добавленных спортклубов).
+                                                           // 2) если его нету там, тогда заного загрузить в этот массив все существующие спортклубы .
+                                                           // 3) опять проверить 1).
+                                                           //  И только тогда добавить его в базу.
+            if (!AlreadyExistSportClub.Contains(nameofSportClub))
+            {
+                // загрузка в массив(нету)
+
+                //добавление в базу
+                string query = @"Insert into SportClub values('" + nameofSportClub + "')";
+                sql.RunInsertUpdateDelete(query);
+            }
+          
+        }
+
         private void InitDateCity()
         {
             string query = @"SELECT * FROM City";
@@ -140,11 +159,30 @@ namespace Judo
             cbCity.DisplayMemberPath = "Name";
             cbCity.SelectedValuePath = "Id";
         }
+
+        private void ADDCity(string nameofCity, string MailIndex)
+        {                                                       // не доделал.  Смысл в том, чтобы добавить новый город, если
+                                                                // 1) его нету в массиве AlreadyExistCity(уже добавленных городов).
+                                                                // 2) если его нету там, тогда заного загрузить в этот массив все существующие города .
+                                                                // 3) опять проверить 1).
+                                                                //  И только тогда добавить его в базу.
+                                                                // п.с наверно желательно делать через почтовые индексы городов.
+
+            if (!AlreadyExistCity.Contains(MailIndex))
+            {
+                // загрузка в массив(нету)
+
+                //добавление в базу
+                string query = @"Insert into City values('" + nameofCity + "', '" + MailIndex + "')";
+                sql.RunInsertUpdateDelete(query);
+            }
+        }
+
         private void InsertCompetitor()
         {
             if (tbFirstName.Text != "" && tbLastName.Text != "" && tbAge.Text != "" && tbPatronymic.Text != "" && tbStret.Text != "" && tbWeight.Text != "" && cbSportClub.SelectedIndex != -1 && cbCity.SelectedIndex != -1)
             {
-                string query = "Insert into People (FIO, DateOfBirth, Id_SportClub,Id_City, Street, Weight, Age) values('"
+                string query = "Insert into People (FIO, Date, Id_SportClub,Id_City, Street, Weight, Age) values('"
                                 + tbLastName.Text + " " + tbFirstName.Text + " " + tbPatronymic.Text + "','"
                                 + Convert.ToDateTime(dpBirth.Text).ToString("yyyy-MM-dd") + "','" + Convert.ToInt32(cbSportClub.SelectedValue.ToString())
                                 + "','" + Convert.ToInt32(cbCity.SelectedValue.ToString()) + "','" + tbStret.Text
@@ -159,7 +197,7 @@ namespace Judo
         {
 
             string query = "Update People  set FIO ='" + tbLastName.Text + " " + tbFirstName.Text + " " + tbPatronymic.Text
-                                            + "', DateOfBirth ='" + Convert.ToDateTime(dpBirth.Text).ToString("yyyy-MM-dd")
+                                            + "', Date ='" + Convert.ToDateTime(dpBirth.Text).ToString("yyyy-MM-dd")
                                             + "', Age ='" + Convert.ToInt32(tbAge.Text)
                                             + "', Weight ='" + Convert.ToDouble(tbWeight.Text)
                                             + "', Street ='" + tbStret.Text
@@ -258,7 +296,7 @@ namespace Judo
         private void ImportExcel()
         {
             DataTable dtLoad = new DataTable();
-           // DataTable dtLoad2 = new DataTable();
+            // DataTable dtLoad2 = new DataTable();
             Microsoft.Win32.OpenFileDialog openDialog = new Microsoft.Win32.OpenFileDialog();
             openDialog.Filter = "Файл Excel|*.XLSX;*.XLS";
             var result = openDialog.ShowDialog();
@@ -276,16 +314,20 @@ namespace Judo
 
             var lastCell = ObjWorkSheet.Cells.SpecialCells(Microsoft.Office.Interop.Excel.XlCellType.xlCellTypeLastCell);
             dtLoad.Columns.Add("FIO");
-            dtLoad.Columns.Add("DateOfBirth");
+            dtLoad.Columns.Add("Date");
             dtLoad.Columns.Add("Weight");
             dtLoad.Columns.Add("SportClub");
             dtLoad.Columns.Add("City");
             dtLoad.Columns.Add("Street");
-            for (int i = 0; i < (int)lastCell.Column; i++)
+            dtLoad.Rows.Add();
+            dtLoad.Rows.Add();
+
+            //  найти все города и спортклубы и добавить их в базу по возможности (методы ADDCity и ADDSportClub)
+            for (int i = 0; i < (int)lastCell.Column - 1; i++)
             {
-                for (int j = 0; j < (int)lastCell.Row; j++)
+                for (int j = 0; j < (int)lastCell.Row - 1; j++)
                 {
-                    if (ObjWorkSheet.Cells[j + 2, i + 1].Text.ToString().Trim() != null&& ObjWorkSheet.Cells[j + 2, i + 1].Text.ToString().Trim() !="")
+                    if (ObjWorkSheet.Cells[j + 2, i + 1].Text.ToString().Trim() != null && ObjWorkSheet.Cells[j + 2, i + 1].Text.ToString().Trim() != "")
                     {
                         dtLoad.Rows.Add();
                         dtLoad.Rows[j][i] = ObjWorkSheet.Cells[j + 2, i + 1].Text.ToString();//считал текст
@@ -296,7 +338,7 @@ namespace Judo
             ObjWorkBook.Close(false, Type.Missing, Type.Missing); //закрыть не сохраняя
             ObjExcel.Quit(); // вышел из Excel
             GC.Collect(); // убрал за собой
-            
+
             //for (int j = 0; j < dtLoad.Rows.Count; j++)
             //{
             //    if (dtLoad.Rows[j][0].ToString().Trim() != null|| dtLoad.Rows[j][0].ToString().Trim() !="")
@@ -313,14 +355,14 @@ namespace Judo
             DateTime dateBirth;
             string[] city = new string[2];
             double weight = 0;
-            int age = 0, idCity=0, idSportClub=0;
+            int age = 0, idCity = 0, idSportClub = 0;
             DataRowView row;
             for (int i = 0; i < dgCompetitorsLoad.Items.Count; i++)
             {
                 row = dgCompetitorsLoad.Items[i] as DataRowView;
-                if (row.Row[0].ToString()!=null && row.Row[0].ToString()!="")
+                if (row.Row[0].ToString() != null && row.Row[0].ToString() != "")
                 {
-                    
+
                     fio = row.Row[0].ToString();
                     dateBirth = Convert.ToDateTime(row.Row[1].ToString());
                     weight = Convert.ToDouble(row.Row[2].ToString());
@@ -329,7 +371,7 @@ namespace Judo
                     idCity = GetIdCity(city[1], city[0]);
                     street = row.Row[5].ToString();
                     age = GetAge(row.Row[1].ToString());
-                    query = "Insert into People (FIO, DateOfBirth, Id_SportClub,Id_City, Street, Weight, Age) values('"
+                    query = "Insert into People (FIO, Date, Id_SportClub,Id_City, Street, Weight, Age) values('"
                             + fio + "','" + dateBirth + "','" + idSportClub + "','" + idCity + "','"
                             + street + "','" + weight + "','" + age + "')";
                     sql.RunInsertUpdateDelete(query);
@@ -365,8 +407,13 @@ namespace Judo
                 return Convert.ToInt32(sql.RunSelect(query).Rows[0][0].ToString());
             }
         }
-        */
+
         private void but2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dgCompetitorsLoad_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

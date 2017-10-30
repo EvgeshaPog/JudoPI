@@ -1,4 +1,4 @@
-﻿<!--<Window x:Class="Judo.Registration"
+﻿<Window x:Class="Judo.Registration"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
         Title="Регистрация участников" Height="405.138" Width="808.483" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
-        //Title="Форма Регистрации" Height="484.138" Width="854.483" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+        <!--//Title="Форма Регистрации" Height="484.138" Width="854.483" Closing="Window_Closing" WindowStartupLocation="CenterScreen">-->
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
             <GradientStop Color="#FFFAFAFF"/>
@@ -52,7 +52,7 @@
                 <ComboBox x:Name="cbCity" HorizontalAlignment="Left" Margin="21,148,0,0" VerticalAlignment="Top" Width="140"/>
                 <Button x:Name="butSave" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="304,252,0,0" Click="butSave_Click"/>
                 <Button x:Name="butCancel" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="428,252,0,0" Click="butCancel_Click"/>
-                <DataGrid x:Name="dgCompetitorsLoad" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="544" Height="230" CanUserResizeRows="False" CanUserResizeColumns="False" AutoGenerateColumns="False">
+                <DataGrid x:Name="dgCompetitorsLoad" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="544" Height="230" CanUserResizeRows="False" CanUserResizeColumns="False" AutoGenerateColumns="False" SelectionChanged="dgCompetitorsLoad_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding FIO}" Header="ФИО"/>
                         <DataGridTextColumn Binding="{Binding DateOfBirth, StringFormat='dd.mm.yyyy'}"  Header="Дата рождения"/>
@@ -71,10 +71,10 @@
         <Button x:Name="butImport" Content="Загрузить из файла" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="642,186,0,0" Click="butImport_Click"/>
 
     </Grid>
-</Window>-->
+</Window>
 
 
-<Window x:Class="Judo.Registration"
+<!--<Window x:Class="Judo.Registration"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -130,5 +130,5 @@
         <Button x:Name="but1_Copy1" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="94" Margin="492,386,0,0" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
 
     </Grid>
-</Window>
+</Window>-->
 
