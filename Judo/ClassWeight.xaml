@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-       Title="Соревнования по дзюдо" Height="200" Width="300">
+       Title="Соревнования по дзюдо" Height="200" Width="300" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
         <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,36,0,-91" VerticalAlignment="Top" Height="130" Width="167"/>
         <Button x:Name="butAdd" Content="Добавить" HorizontalAlignment="Left" Margin="190,36,0,0" VerticalAlignment="Top" Width="90"/>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-        Title="Mat" Height="308.571" Width="445.714">
+        Title="Мат" Height="308.571" Width="445.714" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name ="lb" Content="Маты" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Arial" FontSize="14" Margin="23,20,0,0" FontWeight="Bold"/>
 

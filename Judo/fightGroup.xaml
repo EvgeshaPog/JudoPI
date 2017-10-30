@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
-        Title="fightGroup" Height="300" Width="400
-        ">
+        Title="Боевая группа" Height="300" Width="400" WindowStartupLocation="CenterScreen"
+         Closing="Window_Closing">
     <Grid Margin="0,0,-18,0" HorizontalAlignment="Left" Width="310">
         <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="8,103,-66,0" VerticalAlignment="Top" Height="134" Width="368"/>
         <Label x:Name="label" Content="Боевые группы" HorizontalAlignment="Left" VerticalAlignment="Top"/>

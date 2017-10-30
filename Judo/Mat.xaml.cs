@@ -152,5 +152,10 @@ namespace Judo
                 MessageBox.Show("Выберите запись, которую необходимо удалить!");
             }
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            App.Current.Windows.OfType<FormAdmin>().First().Show();
+        }
     }
 }

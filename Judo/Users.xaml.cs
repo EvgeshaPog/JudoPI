@@ -32,6 +32,7 @@ namespace Judo
 
         private void butAdd_Click(object sender, RoutedEventArgs e)
         {
+            
             VisibleTrue();
             groupBox.Header = "Добавить";
         }
@@ -149,6 +150,11 @@ namespace Judo
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoadTable();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            App.Current.Windows.OfType<FormAdmin>().First().Show();
         }
 
         private void butOtm_Click(object sender, RoutedEventArgs e)
