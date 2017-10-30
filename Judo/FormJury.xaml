@@ -6,9 +6,29 @@
         xmlns:local="clr-namespace:Judo"
         mc:Ignorable="d"
         Title="Меню Жури" Height="350" Width="525" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="#FFFAFAFF"/>
+            <GradientStop Color="#FF8684C7" Offset="0.996"/>
+            <GradientStop Color="#FFA09DF7" Offset="0.923"/>
+            <GradientStop Color="#FFC5C3FF" Offset="0.785"/>
+            <GradientStop Color="#FFE2E1FF" Offset="0.558"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
+            
             <Menu>
+                <Menu.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFAFAFF"/>
+                            <GradientStop Color="#FF8684C7" Offset="0.996"/>
+                            <GradientStop Color="#FFA09DF7" Offset="0.923"/>
+                            <GradientStop Color="#FFC5C3FF" Offset="0.785"/>
+                            <GradientStop Color="#FFE2E1FF" Offset="0.558"/>
+                        </LinearGradientBrush>
+                 
+                </Menu.Background>
                 <MenuItem Name="MIFile" Header="Файл">
                     <MenuItem Name="MIExit" Header="Выход" Click="MenuItem_Click_6"></MenuItem>
                 </MenuItem>

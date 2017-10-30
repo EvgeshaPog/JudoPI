@@ -29,11 +29,11 @@ namespace Judo
 
         private void butLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (tbFIO.Text!="" && tbLogin.Text != "" && tbPassword.Password.ToString() != "")
+            if (tbFIO.Text!="" && tbLogin.Text != "" && tbPassword.Password.ToString() != "" && tbEmail.Text!="")
             {
                 MessageBox.Show(
-                    db.RunInsertUpdateDelete(@"Insert into [User](FIO, Login, Password, Admin) 
-                    values('" +tbFIO.Text+"','"+ tbLogin.Text + "','" + tbPassword.Password.ToString() + "','" + ((chbAdmin.IsChecked == true) ? 1 : 0)+"')")
+                    db.RunInsertUpdateDelete(@"Insert into [User](FIO, Login, Password, Admin, Email) 
+                    values('" +tbFIO.Text+"','"+ tbLogin.Text + "','" + tbPassword.Password.ToString() + "','" + ((chbAdmin.IsChecked == true) ? 1 : 0)+"','"+tbEmail.Text+"')")
                     );
                App.Current.Windows.OfType<MainWindow>().First().Show();
                 Close();
