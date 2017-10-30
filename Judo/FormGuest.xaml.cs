@@ -19,14 +19,25 @@ namespace Judo
     /// </summary>
     public partial class FormGuest : Window
     {
+        SQLData db;
         public FormGuest()
         {
             InitializeComponent();
+            db = new SQLData();
+            LoadBD();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             App.Current.Windows.OfType<MainWindow>().First().Show();
         }
+           
+        
+
+        private void LoadBD()
+        {
+            dataGridParty.ItemsSource = db.RunSelect("Select FIO as ФИО, SportClub.Name as Спортклуб, City.Name as Город, Weight as Вес, Age as Возраст from ((People inner join SportClub On People.Id_SportClub=SportClub.Id) inner join City On People.Id_City=City.ID)").DefaultView;
+        }
+
     }
 }

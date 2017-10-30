@@ -22,7 +22,7 @@
                     <MenuItem Header="Возрастные классы" Click="MenuItem_Click_3"></MenuItem>
                     <MenuItem Header="Маты" Click="MenuItem_Click_4"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="Участники">
+                <MenuItem Header="Участники" Click="MenuItem_Click_7">
                     <MenuItem Header="Регистрация" Click="MenuItem_Click_5"></MenuItem>
                 </MenuItem>
             </Menu>

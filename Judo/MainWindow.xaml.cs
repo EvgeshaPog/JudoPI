@@ -63,7 +63,7 @@ namespace Judo
 
         private void butRegistration_Click(object sender, RoutedEventArgs e)
         {
-            NewUser nu = new NewUser();
+           var  nu = new FormAdmin();
             nu.Show();
             Hide();
         }
