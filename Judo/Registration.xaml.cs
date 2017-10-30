@@ -29,10 +29,6 @@ namespace Judo
         Button flag;
         int rowCurrent = 0;
         int idComp = 0;
-
-        //закоментила потому что жаловался
-
-            /*
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             InitDataСompetitors();
@@ -235,6 +231,7 @@ namespace Judo
             butEdit.IsEnabled = false;
             butImport.IsEnabled = false;
             ClearTextBox();
+            ClearDataGrid();
         }
         private void ClearTextBox()
         {
@@ -249,16 +246,16 @@ namespace Judo
         }
         private void ClearDataGrid()
         {
+            
             foreach (Control ctl in containersGb.Children)
             {
                 if (ctl.GetType() == typeof(DataGrid))
-                    ((DataGrid)ctl).Items.Clear();
+                    ((DataGrid)ctl).ItemsSource=null;
             }
         }
         private void ImportExcel()
         {
             DataTable dtLoad = new DataTable();
-           // DataTable dtLoad2 = new DataTable();
             Microsoft.Win32.OpenFileDialog openDialog = new Microsoft.Win32.OpenFileDialog();
             openDialog.Filter = "Файл Excel|*.XLSX;*.XLS";
             var result = openDialog.ShowDialog();
@@ -281,14 +278,16 @@ namespace Judo
             dtLoad.Columns.Add("SportClub");
             dtLoad.Columns.Add("City");
             dtLoad.Columns.Add("Street");
-            for (int i = 0; i < (int)lastCell.Column; i++)
+
+            for (int j = 0; j < (int)lastCell.Row; j++)
             {
-                for (int j = 0; j < (int)lastCell.Row; j++)
+                if (ObjWorkSheet.Cells[j + 2, 1].Text.ToString() != "" && ObjWorkSheet.Cells[j + 2, 1].Text.ToString() != null)
                 {
-                    if (ObjWorkSheet.Cells[j + 2, i + 1].Text.ToString().Trim() != null&& ObjWorkSheet.Cells[j + 2, i + 1].Text.ToString().Trim() !="")
+                    dtLoad.Rows.Add();
+                    for (int i = 0; i < (int)lastCell.Column; i++)
                     {
-                        dtLoad.Rows.Add();
-                        dtLoad.Rows[j][i] = ObjWorkSheet.Cells[j + 2, i + 1].Text.ToString();//считал текст
+                        if (ObjWorkSheet.Cells[j + 2, i + 1].Text.ToString() != "" && ObjWorkSheet.Cells[j + 2, i + 1].Text.ToString() != null)
+                            dtLoad.Rows[j][i] = ObjWorkSheet.Cells[j + 2, i + 1].Text.ToString();//считал текст
                     }
                 }
             }
@@ -296,14 +295,6 @@ namespace Judo
             ObjWorkBook.Close(false, Type.Missing, Type.Missing); //закрыть не сохраняя
             ObjExcel.Quit(); // вышел из Excel
             GC.Collect(); // убрал за собой
-            
-            //for (int j = 0; j < dtLoad.Rows.Count; j++)
-            //{
-            //    if (dtLoad.Rows[j][0].ToString().Trim() != null|| dtLoad.Rows[j][0].ToString().Trim() !="")
-            //        {
-            //            dtLoad2.Rows.Add(dtLoad.Rows[j]);
-            //        }
-            //}
             dgCompetitorsLoad.ItemsSource = dtLoad.DefaultView;
 
         }
@@ -318,7 +309,7 @@ namespace Judo
             for (int i = 0; i < dgCompetitorsLoad.Items.Count; i++)
             {
                 row = dgCompetitorsLoad.Items[i] as DataRowView;
-                if (row.Row[0].ToString()!=null && row.Row[0].ToString()!="")
+                if (row!=null)
                 {
                     
                     fio = row.Row[0].ToString();
@@ -365,10 +356,14 @@ namespace Judo
                 return Convert.ToInt32(sql.RunSelect(query).Rows[0][0].ToString());
             }
         }
-        */
-        private void but2_Click(object sender, RoutedEventArgs e)
-        {
 
+        private void dgCompetitors_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            groupBox.Header = "Редактирование";
+            VisibleTrue();
+            LoadForEdit();
+            rowCurrent = dgCompetitors.SelectedIndex;
+            flag = butEdit;
         }
     }
 }

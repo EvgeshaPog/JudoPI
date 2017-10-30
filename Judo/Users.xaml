@@ -28,12 +28,16 @@
                 <TextBox x:Name="textBox_F" HorizontalAlignment="Left" Height="23" Margin="21,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="151"/>
                 <TextBox x:Name="textBox_I"  HorizontalAlignment="Left" Height="23" Margin="177,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="140"/>
                 <TextBox x:Name="textBox_O"  HorizontalAlignment="Left" Height="23" Margin="322,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="140"/>
-                <Label x:Name="label_login"  Content="Логин" HorizontalAlignment="Left" Margin="21,65,0,0" VerticalAlignment="Top" Height="26" Width="44" Foreground="#FF463D7A"/>
-                <TextBox x:Name="textBox_Login"  HorizontalAlignment="Left" Height="23" Margin="21,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="151" />
-                <Label x:Name="label_password"  Content="Пароль" HorizontalAlignment="Left" Margin="177,65,0,0" VerticalAlignment="Top" Height="26" Width="51" Foreground="#FF463D7A"/>
-                <TextBox x:Name="textBox_Password" HorizontalAlignment="Left" Height="23" Margin="177,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="140"/>
-                <CheckBox Name="CheckBoxAdmin"  Content="Администратор" HorizontalAlignment="Left" Margin="21,117,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.761,0.033" Foreground="#FF463D7A"/>
-                <Button x:Name="butOK" Click="butOK_Click" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="158" Margin="166,180,0,0" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
+                <Label x:Name="label_email"  Content="Почтовый ящик" HorizontalAlignment="Left" Margin="21,65,0,0" VerticalAlignment="Top" Height="26" Width="106"/>
+                <TextBox x:Name="textBox_email"  HorizontalAlignment="Left" Height="23" Margin="21,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="151"/>
+                <Label x:Name="label_login"  Content="Логин" HorizontalAlignment="Left" Margin="177,66,0,0" VerticalAlignment="Top" Height="26" Width="44"/>
+                <TextBox x:Name="textBox_Login"  HorizontalAlignment="Left" Height="23" Margin="177,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="151"/>
+                <Label x:Name="label_password"  Content="Пароль" HorizontalAlignment="Left" Margin="322,66,0,0" VerticalAlignment="Top" Height="26" Width="51" RenderTransformOrigin="3.529,0.615"/>
+                <TextBox x:Name="textBox_Password" HorizontalAlignment="Left" Height="23" Margin="322,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="140"/>
+                <CheckBox Name="CheckBoxAdmin"  Content="Администратор" HorizontalAlignment="Left" Margin="21,117,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.761,0.033"/>
+                <Button x:Name="butOK" Click="butOK_Click" Content="ОК" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Margin="86,180,0,0"/>
+                <Button x:Name="butOtm" Click="butOtm_Click" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Margin="238,180,0,0"/>
+
             </Grid>
         </GroupBox>
 
