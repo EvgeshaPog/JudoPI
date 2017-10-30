@@ -76,6 +76,8 @@ namespace Judo
             // gorod.Show();
             //SportC S = new SportC();
             //S.Show();
+            //ClassAge c = new ClassAge();
+            //c.Show();
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
