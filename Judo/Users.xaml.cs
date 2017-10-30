@@ -147,7 +147,7 @@ namespace Judo
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-           
+            App.Current.Windows.OfType<FormAdmin>().First().Show();
         }
 
         private void UsersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

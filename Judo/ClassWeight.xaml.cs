@@ -60,7 +60,7 @@ namespace Judo
             tbOT.Clear();
             tbDO.Clear();
             VisibleTrue();
-            groupBox.Header = "Добавить возрастной класс";
+            groupBox.Header = "Добавить весовой класс";
         }
 
         private void but4_Click(object sender, RoutedEventArgs e)//Добавить ОК
