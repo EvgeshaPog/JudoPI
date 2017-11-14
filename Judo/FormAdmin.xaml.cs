@@ -91,5 +91,10 @@ namespace Judo
             u.Show();
             Hide();
         }
+
+        private void MenuItem_Click_7(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

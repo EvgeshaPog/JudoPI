@@ -63,7 +63,7 @@ namespace Judo
 
         private void butRegistration_Click(object sender, RoutedEventArgs e)
         {
-            NewUser nu = new NewUser();
+           var  nu = new FormAdmin();
             nu.Show();
             Hide();
         }
@@ -72,6 +72,12 @@ namespace Judo
         {
             tbLogin.Text = "";
             tbPassword.Password = "";
+            //Gorod gorod = new Gorod();
+            // gorod.Show();
+            //SportC S = new SportC();
+            //S.Show();
+            //ClassAge c = new ClassAge();
+            //c.Show();
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
@@ -81,11 +87,17 @@ namespace Judo
             Hide();
         }
 
-        private void Hyperlink_Click_1(object sender, RoutedEventArgs e)
+
+        private void Hyperlink_Click_2(object sender, RoutedEventArgs e)
         {
             Skleroz s = new Skleroz();
             s.Show();
             Hide();
+        }
+
+        private void butLogin_MouseEnter(object sender, MouseEventArgs e)
+        {
+           // butLogin.Background = Brushes.Red;
         }
     }
 }
