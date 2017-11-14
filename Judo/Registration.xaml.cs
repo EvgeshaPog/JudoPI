@@ -116,7 +116,7 @@ namespace Judo
         }
         private void InitDataСompetitors()
         {
-            string query = @"SELECT People.Id, People.FIO, People.DateOfBirth, People.Age, People.Weight,SportClub.Name as SportClub, City.Name AS City, People.Street 
+            string query = @"SELECT People.Id, People.FIO, People.DateOfBirth, People.Age, People.Gender, People.Weight,SportClub.Name as SportClub, City.Name AS City, People.Street 
                            FROM     People INNER JOIN
                                     SportClub ON People.Id_SportClub = SportClub.Id INNER JOIN
                                     City ON People.Id_City = City.Id";
@@ -138,11 +138,15 @@ namespace Judo
         }
         private void InsertCompetitor()
         {
+            string gender = "";
             if (tbFirstName.Text != "" && tbLastName.Text != "" && tbAge.Text != "" && tbPatronymic.Text != "" && tbStret.Text != "" && tbWeight.Text != "" && cbSportClub.SelectedIndex != -1 && cbCity.SelectedIndex != -1)
             {
-                string query = "Insert into People (FIO, DateOfBirth, Id_SportClub,Id_City, Street, Weight, Age) values('"
+                if (rbF.IsChecked == true)
+                    gender = "Ж";
+                else gender = "М";
+                string query = "Insert into People (FIO, DateOfBirth, Gender, Id_SportClub,Id_City, Street, Weight, Age) values('"
                                 + tbLastName.Text + " " + tbFirstName.Text + " " + tbPatronymic.Text + "','"
-                                + Convert.ToDateTime(dpBirth.Text).ToString("yyyy-MM-dd") + "','" + Convert.ToInt32(cbSportClub.SelectedValue.ToString())
+                                + Convert.ToDateTime(dpBirth.Text).ToString("yyyy-MM-dd") + "','" + gender + "','" + Convert.ToInt32(cbSportClub.SelectedValue.ToString())
                                 + "','" + Convert.ToInt32(cbCity.SelectedValue.ToString()) + "','" + tbStret.Text
                                 + "','" + Convert.ToInt32(tbWeight.Text) + "','" + Convert.ToDouble(tbAge.Text) + "')";
 
@@ -153,10 +157,14 @@ namespace Judo
         }
         private void UpdateCompetitor(int idComp)
         {
-
+            string gender = "";
+            if (rbF.IsChecked == true)
+                gender = "Ж";
+            else gender = "М";
             string query = "Update People  set FIO ='" + tbLastName.Text + " " + tbFirstName.Text + " " + tbPatronymic.Text
                                             + "', DateOfBirth ='" + Convert.ToDateTime(dpBirth.Text).ToString("yyyy-MM-dd")
-                                            + "', Age ='" + Convert.ToInt32(tbAge.Text)
+                                            + "', Gender ='" +gender
+                                             + "', Age ='" + Convert.ToInt32(tbAge.Text)
                                             + "', Weight ='" + Convert.ToDouble(tbWeight.Text)
                                             + "', Street ='" + tbStret.Text
                                             + "', Id_SportClub ='" + Convert.ToInt32(cbSportClub.SelectedValue.ToString())
@@ -187,15 +195,19 @@ namespace Judo
             tbFirstName.Text = fio[0];
             tbLastName.Text = fio[1];
             tbPatronymic.Text = fio[2];
-            tbAge.Text = row.Row[3].ToString();
-            tbWeight.Text = row.Row[4].ToString();
-            tbStret.Text = row.Row[7].ToString();
-            dpBirth.Text = row.Row[2].ToString();
+            string gender = row.Row[2].ToString();
+            if (gender == "М" || gender == "m")
+                rbM.IsChecked=true;
+            else rbF.IsChecked=true;
+            tbAge.Text = row.Row[4].ToString();
+            tbWeight.Text = row.Row[5].ToString();
+            tbStret.Text = row.Row[8].ToString();
+            dpBirth.Text = row.Row[3].ToString();
             InitDateSportClub();
             InitDateCity();
 
-            cbCity.Text = row.Row[6].ToString();
-            cbSportClub.Text = row.Row[5].ToString();
+            cbCity.Text = row.Row[7].ToString();
+            cbSportClub.Text = row.Row[6].ToString();
         }
         private void VisibleTrue()
         {
@@ -207,6 +219,8 @@ namespace Judo
             butDelete.IsEnabled = false;
             butEdit.IsEnabled = false;
             butImport.IsEnabled = false;
+            rbM.IsChecked = true;
+            rbF.IsChecked = false;
         }
         private void VisibleFalse()
         {
@@ -218,6 +232,8 @@ namespace Judo
             butDelete.IsEnabled = true;
             butEdit.IsEnabled = true;
             butImport.IsEnabled = true;
+            rbM.IsChecked = true;
+            rbF.IsChecked = false;
             ClearTextBox();
         }
         private void VisibleTrueImport()
@@ -230,6 +246,8 @@ namespace Judo
             butDelete.IsEnabled = false;
             butEdit.IsEnabled = false;
             butImport.IsEnabled = false;
+            rbM.IsChecked = true;
+            rbF.IsChecked = false;
             ClearTextBox();
             ClearDataGrid();
         }
@@ -246,11 +264,11 @@ namespace Judo
         }
         private void ClearDataGrid()
         {
-            
+
             foreach (Control ctl in containersGb.Children)
             {
                 if (ctl.GetType() == typeof(DataGrid))
-                    ((DataGrid)ctl).ItemsSource=null;
+                    ((DataGrid)ctl).ItemsSource = null;
             }
         }
         private void ImportExcel()
@@ -274,6 +292,7 @@ namespace Judo
             var lastCell = ObjWorkSheet.Cells.SpecialCells(Microsoft.Office.Interop.Excel.XlCellType.xlCellTypeLastCell);
             dtLoad.Columns.Add("FIO");
             dtLoad.Columns.Add("DateOfBirth");
+            dtLoad.Columns.Add("Gender");
             dtLoad.Columns.Add("Weight");
             dtLoad.Columns.Add("SportClub");
             dtLoad.Columns.Add("City");
@@ -300,28 +319,29 @@ namespace Judo
         }
         private void InsertCompetitorFromDataGrid()
         {
-            string query = "", fio = "", street = "";
+            string query = "", fio = "", street = "", gender="";
             DateTime dateBirth;
             string[] city = new string[2];
             double weight = 0;
-            int age = 0, idCity=0, idSportClub=0;
+            int age = 0, idCity = 0, idSportClub = 0;
             DataRowView row;
             for (int i = 0; i < dgCompetitorsLoad.Items.Count; i++)
             {
                 row = dgCompetitorsLoad.Items[i] as DataRowView;
-                if (row!=null)
+                if (row != null)
                 {
-                    
+
                     fio = row.Row[0].ToString();
                     dateBirth = Convert.ToDateTime(row.Row[1].ToString());
-                    weight = Convert.ToDouble(row.Row[2].ToString());
-                    idSportClub = GetIdSportClub(row.Row[3].ToString());
-                    city = row.Row[4].ToString().Split(' ');
+                    gender = row.Row[2].ToString();
+                    weight = Convert.ToDouble(row.Row[3].ToString());
+                    idSportClub = GetIdSportClub(row.Row[4].ToString());
+                    city = row.Row[5].ToString().Split(' ');
                     idCity = GetIdCity(city[1], city[0]);
-                    street = row.Row[5].ToString();
+                    street = row.Row[6].ToString();
                     age = GetAge(row.Row[1].ToString());
-                    query = "Insert into People (FIO, DateOfBirth, Id_SportClub,Id_City, Street, Weight, Age) values('"
-                            + fio + "','" + dateBirth + "','" + idSportClub + "','" + idCity + "','"
+                    query = "Insert into People (FIO, DateOfBirth,Gender, Id_SportClub,Id_City, Street, Weight, Age) values('"
+                            + fio + "','" + dateBirth + "','" + gender+"','" + idSportClub + "','" + idCity + "','"
                             + street + "','" + weight + "','" + age + "')";
                     sql.RunInsertUpdateDelete(query);
                 }
