@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +21,13 @@ namespace Judo
     public partial class FormJury : Window
     {
         SQLData db;
+        DataTable dt;
         public FormJury()
         {
             InitializeComponent();
             db = new SQLData();
+            dt = db.RunSelect("Select Id, Name from Mat");
+            dataGrid.ItemsSource = dt.DefaultView;
         }
 
         private void MenuItem_Click_6(object sender, RoutedEventArgs e)
@@ -54,6 +58,20 @@ namespace Judo
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             App.Current.Windows.OfType<MainWindow>().First().Show();
+        }
+
+        private void dataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+
+        }
+
+        private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            WindowControl wc = new WindowControl();
+            DataRowView row = (DataRowView)dataGrid.SelectedItems[0];
+            wc.SetMat(row["Name"].ToString(), Convert.ToInt32(row["Id"]));
+            wc.Show();
+            Hide();
         }
     }
 }

@@ -15,13 +15,14 @@ namespace Judo
     {
         SQLData db = new SQLData();
         DataTable dt;
-        int index;
+        int index, idmat;
         bool start, start1;
         DispatcherTimer timer;
         DispatcherTimer timer1;
         public WindowControl()
         {
             InitializeComponent();
+        
             start = false;
             start1 = false;
             dt = new DataTable();
@@ -32,12 +33,33 @@ namespace Judo
             timer1 = new DispatcherTimer();
             timer1.Tick += new EventHandler(timer1_Tick);
             timer1.Interval = new TimeSpan(0, 0, 1);
-            LoadTable();
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            if(Convert.ToInt32(label17.Content) < 20)
             label17.Content = (Convert.ToInt32(label17.Content)+1).ToString();
+            else
+            {
+                timer.Stop();
+
+                if (Convert.ToInt32(label11.Content) == Convert.ToInt32(label14.Content))
+                    GetResult("никто");
+
+                if (Convert.ToInt32(label11.Content) > Convert.ToInt32(label14.Content))
+                {
+                    text1.Background = Brushes.Yellow;
+                    GetResult(text1.Text);
+                }
+
+                if (Convert.ToInt32(label11.Content) < Convert.ToInt32(label14.Content))
+                {
+                    text2.Background = Brushes.Yellow;
+                    GetResult(text2.Text);
+                }
+
+                start = false;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -53,7 +75,7 @@ namespace Judo
                 PeopleBattleGroup AS PBG1 On Battle.Id_People2 = PBG1.Id INNER JOIN
 				People On PeopleBattleGroup.People_Id = People.Id INNER JOIN
 				People AS People_1 On PBG1.People_Id = People_1.Id
-				Where Battle.Result is NULL OR Battle.Result=''");
+				Where (Battle.Result is NULL OR Battle.Result='') and Battle.Id_Mat="+idmat);
             NextBattle();
         }
 
@@ -84,6 +106,8 @@ namespace Judo
             label14.Content = "0";
             label15.Content = "0";
             label16.Content = "0";
+            label17.Content = "0";
+            label18.Content = "0";
             text1.Background = Brushes.White;
             text2.Background = Brushes.White;
         }
@@ -124,8 +148,16 @@ namespace Judo
         
         private void GetResult(string name)
         {
+            timer.Stop();
+            start = false;
             MessageBox.Show("Победил " + name);
             NextBattle();
+        }
+
+        public void SetMat(string mat, int idmat)
+        {
+            tbMAT.Text = mat;
+            this.idmat = idmat;
         }
 
         private void butWazaAriRed_Click(object sender, RoutedEventArgs e)
@@ -161,11 +193,26 @@ namespace Judo
         private void butWarningWhite_Click(object sender, RoutedEventArgs e)
         {
             label13.Content = (Convert.ToInt32(label13.Content) + 1).ToString();
+            if (Convert.ToInt32(label13.Content) > 1)
+            {
+                text2.Background = Brushes.Yellow;
+                GetResult(text2.Text);
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadTable();
         }
 
         private void butWarningRed_Click(object sender, RoutedEventArgs e)
         {
             label16.Content = (Convert.ToInt32(label16.Content) + 1).ToString();
+            if (Convert.ToInt32(label16.Content) > 1)
+            {
+                text1.Background = Brushes.Yellow;
+                GetResult(text1.Text);
+            }
         }
 
         private void butHoldingTime_Click(object sender, RoutedEventArgs e)
