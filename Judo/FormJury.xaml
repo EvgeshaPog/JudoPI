@@ -17,17 +17,17 @@
     </Window.Background>
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            
+
             <Menu>
                 <Menu.Background>
                     <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="#FFFAFAFF"/>
-                            <GradientStop Color="#FF8684C7" Offset="0.996"/>
-                            <GradientStop Color="#FFA09DF7" Offset="0.923"/>
-                            <GradientStop Color="#FFC5C3FF" Offset="0.785"/>
-                            <GradientStop Color="#FFE2E1FF" Offset="0.558"/>
-                        </LinearGradientBrush>
-                 
+                        <GradientStop Color="#FFFAFAFF"/>
+                        <GradientStop Color="#FF8684C7" Offset="0.996"/>
+                        <GradientStop Color="#FFA09DF7" Offset="0.923"/>
+                        <GradientStop Color="#FFC5C3FF" Offset="0.785"/>
+                        <GradientStop Color="#FFE2E1FF" Offset="0.558"/>
+                    </LinearGradientBrush>
+
                 </Menu.Background>
                 <MenuItem Name="MIFile" Header="Файл">
                     <MenuItem Name="MIExit" Header="Выход" Click="MenuItem_Click_6"></MenuItem>
@@ -37,7 +37,9 @@
                     <MenuItem Header="Бой" Click="MenuItem_Click_1"></MenuItem>
                 </MenuItem>
             </Menu>
-        </DockPanel>
 
+
+        </DockPanel>
+        <DataGrid x:Name="dataGrid" Width="212" Margin="0,45,0,70" SelectedCellsChanged="dataGrid_SelectedCellsChanged" MouseDoubleClick="dataGrid_MouseDoubleClick"/>
     </DockPanel>
 </Window>
