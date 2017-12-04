@@ -159,11 +159,11 @@ namespace Judo
         {
             string gender = "";
             if (rbF.IsChecked == true)
-                gender = "Ж";
-            else gender = "М";
+                gender = "f";
+            else gender = "m";
             string query = "Update People  set FIO ='" + tbLastName.Text + " " + tbFirstName.Text + " " + tbPatronymic.Text
                                             + "', DateOfBirth ='" + Convert.ToDateTime(dpBirth.Text).ToString("yyyy-MM-dd")
-                                            + "', Gender ='" +gender
+                                            + "', Gender ='" + gender
                                              + "', Age ='" + Convert.ToInt32(tbAge.Text)
                                             + "', Weight ='" + Convert.ToDouble(tbWeight.Text)
                                             + "', Street ='" + tbStret.Text
@@ -331,13 +331,20 @@ namespace Judo
                 if (row != null)
                 {
 
-                    fio = row.Row[0].ToString();
-                    dateBirth = Convert.ToDateTime(row.Row[1].ToString());
+                    fio = row.Row[0].ToString();         
+                        dateBirth = Convert.ToDateTime(row.Row[1].ToString());               
                     gender = row.Row[2].ToString();
                     weight = Convert.ToDouble(row.Row[3].ToString());
                     idSportClub = GetIdSportClub(row.Row[4].ToString());
                     city = row.Row[5].ToString().Split(' ');
-                    idCity = GetIdCity(city[1], city[0]);
+                    if (city.Length == 2)
+                    {
+                        idCity = GetIdCity(city[1], city[0]);
+                    }
+                    else
+                    {
+                        idCity = GetIdCity(city[0]);
+                    }
                     street = row.Row[6].ToString();
                     age = GetAge(row.Row[1].ToString());
                     query = "Insert into People (FIO, DateOfBirth,Gender, Id_SportClub,Id_City, Street, Weight, Age) values('"
@@ -373,6 +380,21 @@ namespace Judo
                 query = @"Insert into City (Name, PochtaIndex) values('" + city + "', '" + index + "')";
                 sql.RunInsertUpdateDelete(query);
                 query = @"SELECT Id FROM City Where Name='" + city + "'";
+                return Convert.ToInt32(sql.RunSelect(query).Rows[0][0].ToString());
+            }
+        }
+
+        private int GetIdCity(string index)
+        {
+            string query = @"SELECT Id FROM City Where PochtaIndex='" + index + "'";
+            DataTable dt = sql.RunSelect(query);
+            if (dt.Rows.Count > 0)
+                return Convert.ToInt32(dt.Rows[0][0].ToString());
+            else
+            {
+                query = @"Insert into City (PochtaIndex) values('" + index + "')";
+                sql.RunInsertUpdateDelete(query);
+                query = @"SELECT Id FROM City Where PochtaIndex='" + index + "'";
                 return Convert.ToInt32(sql.RunSelect(query).Rows[0][0].ToString());
             }
         }
