@@ -24,6 +24,7 @@
         <Label x:Name="label1" Content="Возраст" HorizontalAlignment="Left" Margin="7,34,0,0" VerticalAlignment="Top" Foreground="#FF463D7A"/>
         <Label x:Name="label2" Content="Вес
                " HorizontalAlignment="Left" Margin="122,35,0,0" VerticalAlignment="Top" Foreground="#FF463D7A"/>
+        <Button x:Name ="butAdd" Content="Составить боевые группы" HorizontalAlignment="Left" Margin="115,5,0,0" VerticalAlignment="Top"  FontFamily="Arial" Click="butAdd_Click" Background="#FF463D7A" Foreground="#FFF1F0F7" FontWeight="Bold"/>
 
     </Grid>
 </Window>
