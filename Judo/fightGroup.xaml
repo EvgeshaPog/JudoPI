@@ -17,7 +17,7 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid Margin="0,0,-18,0" HorizontalAlignment="Left" Width="310">
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,103,-553,0" VerticalAlignment="Top" Height="457" Width="853"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,103,-553,0" VerticalAlignment="Top" Height="457" Width="853" LoadingRow="dataGrid_LoadingRow"/>
         <Label x:Name="label" Content="Боевые группы" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF463D7A" Margin="8,0,0,0"/>
         <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="12,57,0,0" VerticalAlignment="Top" Width="86" SelectionChanged="comboBox_SelectionChanged"/>
         <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="126,57,0,0" VerticalAlignment="Top" Width="88" SelectionChanged="comboBox_SelectionChanged"/>

@@ -21,6 +21,9 @@ namespace Judo
     public partial class fightGroup : Window
     {
         SQLData db = new SQLData();
+        public int idOfGrouupforPainting = 0;
+        public int currcolor = 0;
+        SolidColorBrush CurrentBrush = new SolidColorBrush(Colors.White);
         public fightGroup()
         {
             InitializeComponent();
@@ -73,6 +76,11 @@ namespace Judo
                 AllWeightClass[i] = newWeightClass;
             }
 
+
+
+
+
+
             dt = db.RunSelect(@"Select People.Id , People.FIO,SportClub.Name, City.Name,
                                                 Weight,Age,Street,Gender,DateOfBirth
                                                     From (People inner join SportClub on People.Id_SportClub = SportClub.Id)
@@ -107,18 +115,86 @@ namespace Judo
                         break;
                     }
                 }
-                if(newkid.Weight>= 55)
-                    newkid.WeightClass = AllWeightClass[AllWeightClass.Length-1];
+                if (newkid.Weight >= 55)
+                    newkid.WeightClass = AllWeightClass[AllWeightClass.Length - 1];
 
                 if (newkid.Weight != 5)
                 {
-                    AllKids[i] = newkid;
+
                     int IDOfGroup = Convert.ToInt32(db.RunSelect(@"Select BattleGroup.Id 
                                                 From (BattleGroup inner join AgeClass on BattleGroup.Id_Age = AgeClass.Id)
                                                                   inner join WeightClass on BattleGroup.Id_Weight = WeightClass.Id
                                                                         WHERE AgeClass.Id = '" + newkid.AgeClass.Num + "' and WeightClass.Id = '" + newkid.WeightClass.Num + "'").Rows[0][0]);
                     db.RunInsertUpdateDelete("Insert into PeopleBattleGroup values('" + newkid.Num + "', '" + IDOfGroup + "','" + DateTime.Now.Date + "')");
+
+                    newkid.IDOfBattleGroup = IDOfGroup;
+                    newkid.IDBattleG = Convert.ToInt32(db.RunSelect(@"select top 1 Id  FROM PeopleBattleGroup Order by Id Desc").Rows[0][0]);
+                    AllKids[i] = newkid;
                 }
+            }
+
+
+
+
+         
+
+
+            //  разбить на группы если в них больше чем 5  (запариться с базой) Метод по соритировке
+
+
+
+         
+
+            dt = db.RunSelect("Select Id, Id_Weight, Id_Age From BattleGroup");
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                MYSort(Convert.ToInt32(dt.Rows[i][0]), Convert.ToInt32(dt.Rows[i][1]), Convert.ToInt32(dt.Rows[i][2]));
+            }
+
+
+
+            DataTable Mats = db.RunSelect("SELECT * From Mat");
+           DataTable AllBattleGroupsInUse = db.RunSelect("SELECT Distinct Battle_Id From PeopleBattleGroup");
+            DataTable CompetitorsInGroup;
+            int matid = 0;
+            for (int group = 0; group < AllBattleGroupsInUse.Rows.Count; group++)
+            {
+                CompetitorsInGroup = db.RunSelect("Select Id  From PeopleBattleGroup Where Battle_Id = "+ AllBattleGroupsInUse.Rows[group][0] + "");
+                for (int i = 0; i < CompetitorsInGroup.Rows.Count-1; i++)
+                {
+                    for (int j = i+1; j < CompetitorsInGroup.Rows.Count; j++)
+                    {
+                        db.RunInsertUpdateDelete(@"Insert into Battle values(NULL," + Convert.ToInt32(Mats.Rows[matid][0]) + ",1," + Convert.ToInt32(CompetitorsInGroup.Rows[i][0]) + ", " + Convert.ToInt32(CompetitorsInGroup.Rows[j][0]) + ",NULL,NULL,NULL)");
+                        matid = (matid + 1) % Mats.Rows.Count;
+                    }
+                }
+            }
+                //    if (!AllKids[i].HaveBattlealready)
+                //    {
+                //        for (int j = i + 1; j < AllKids.Length; j++)
+                //        {
+                //            if (AllKids[i].IDOfBattleGroup == AllKids[j].IDOfBattleGroup)
+                //            {
+                //                
+                //                AllKids[i].HaveBattlealready = true;
+                //                AllKids[j].HaveBattlealready = true;
+                //                break;
+                //            }
+                //        }
+                //    }
+                //}
+                // конец
+
+
+
+
+
+
+
+
+
+
+
             }
 
 
@@ -130,64 +206,84 @@ namespace Judo
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-        }
-        public class SortbyBattleGroups
+        public void MYSort( int IDGroupOtkuda, int weight, int age )
         {
-            public int Num { get; set; }
-            public string Start { get; set; }
-            public string Finich { get; set; }
+            DataTable dt = db.RunSelect(@"Select People_Id, DateOfCompeitors  
+                                                 From PeopleBattleGroup
+                                                    WHERE Battle_Id ='" + IDGroupOtkuda + "'");
+            int CountCompetitorsinGroup = dt.Rows.Count;
+            int countRepeat = 0;
+            int rowscount = 0;
+            if (CountCompetitorsinGroup >= 6)
+            {
+                if ((CountCompetitorsinGroup-5) % 5 >= 3) // их хотя бы больше 5 и при делении на 5, будет группа с хотябы 3 людьми;
+                {
+                       rowscount = 5;
+                       countRepeat = (CountCompetitorsinGroup / 5) -1;
 
-            // писать супер код по сортировке
+                    for (int i = 0; i <= countRepeat; i++)
+                    {
+                        db.RunInsertUpdateDelete(@"Insert into BattleGroup values(" + weight + "," + age + ")");
+                        int lastgroup = Convert.ToInt32(db.RunSelect(@"select top 1 Id  FROM BattleGroup Order by Id Desc").Rows[0][0]);
+
+                        if (i != countRepeat)
+                            for (int rowCompetitor = rowscount; rowCompetitor < rowscount+5; rowCompetitor++)
+                            {
+                                db.RunInsertUpdateDelete("Update PeopleBattleGroup set Battle_Id = "+ lastgroup + " Where People_Id = "+ Convert.ToInt32(dt.Rows[rowCompetitor][0]) + "");
+                            }
+                        else
+                            for (int rowCompetitor = CountCompetitorsinGroup - 3; rowCompetitor < CountCompetitorsinGroup; rowCompetitor++)
+                            {
+                                db.RunInsertUpdateDelete("Update PeopleBattleGroup set Battle_Id = " + lastgroup + " Where People_Id = " + Convert.ToInt32(dt.Rows[rowCompetitor][0]) + "");
+                            }
+                        rowscount += 5;
 
 
+                    }
+                    return;
+                }
 
+                if ((CountCompetitorsinGroup-4) % 4 >= 3)
+                {
+                    rowscount = 4;
+                    countRepeat = (CountCompetitorsinGroup / 4) - 1;
+
+                    for (int i = 0; i <= countRepeat; i++)
+                    {
+                        db.RunInsertUpdateDelete(@"Insert into Battle values(" + weight + "," + age + ")");
+                        int lastgroup = Convert.ToInt32(db.RunSelect(@"select top 1 Id  FROM BattleGroup Order by Id Desc").Rows[0][0]);
+
+                        if (i != countRepeat)
+                            for (int rowCompetitor = rowscount; rowCompetitor < rowscount + 4; rowCompetitor++)
+                            {
+                                db.RunInsertUpdateDelete("Update PeopleBattleGroup set Battle_Id = " + lastgroup + " Where People_Id = " + Convert.ToInt32(dt.Rows[rowCompetitor][0]) + "");
+                            }
+                        else
+                            for (int rowCompetitor = CountCompetitorsinGroup - 3; rowCompetitor < CountCompetitorsinGroup; rowCompetitor++)
+                            {
+                                db.RunInsertUpdateDelete("Update PeopleBattleGroup set Battle_Id = " + lastgroup + " Where People_Id = " + Convert.ToInt32(dt.Rows[rowCompetitor][0]) + "");
+                            }
+                        rowscount += 4;
+                    }
+                    return;
+                }
+
+                //if (CountCompetitorsinGroup % 3 >= 0)
+                //{
+                //    countRepeat = (CountCompetitorsinGroup / 3);
+                //    return;
+                //}
+
+                //if ((CountCompetitorsinGroup - 5) % 5 >= 0)
+                //{
+                //    countRepeat = (CountCompetitorsinGroup / 3);
+                //    return;
+                //}
+
+            }
         }
-        public class Kid
-        {
-            string fio, sportclub, city, street, gender;
-            int age, num;
-            double weight;
-            DateTime dateofbirth;
-            AgeClass ageclass;
-            WeightClass weightclass;
 
-            public int Num { get { return num; } set { num = value; } }
-            public string FIO { get { return fio; } set { fio = value; } }
-            public string Sportclub { get { return sportclub; } set { sportclub = value; } }
-            public string City { get { return city; } set { city = value; } }
-            public double Weight { get { return weight; } set { weight = value; } }
-            public int Age { get { return age; } set { age = value; } }
-            public string Street { get { return street; } set { street = value; } }
-            public string Gender { get { return gender; } set { gender = value; } }
-            public DateTime Dateofbirth { get { return dateofbirth; } set { dateofbirth = value; } }
-            public AgeClass AgeClass { get { return ageclass; } set { ageclass = value; } }
-            public WeightClass WeightClass { get { return weightclass; } set { weightclass = value; } }
-        }
-        public class AgeClass
-        {
-            int num, from, to;
-            public int Num { get { return num; } set { num = value; } }
-            public int From { get { return from; } set { from = value; } }
-            public int To { get { return to; } set { to = value; } }
-        }
-        public class WeightClass
-        {
-            int num, from, to;
-            public int Num { get { return num; } set { num = value; } }
-            public int From { get { return from; } set { from = value; } }
-            public int To { get { return to; } set { to = value; } }
-        }
+
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -206,14 +302,105 @@ namespace Judo
                                                                  inner join City      on People.Id_City      = City.Id
                                                                  inner join BattleGroup on PeopleBattleGroup.Battle_Id = BattleGroup.Id
                                                                         WHERE Id_Age = '" + IDofAgeClass + "' and Id_Weight = '" + IDofWeightClass + "'");
-             
+
                 dataGrid.ItemsSource = dt.DefaultView;
             }
         }
 
-        private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
-            //Вес 1 (21-23)
+            SolidColorBrush[] hb = new SolidColorBrush[9];
+            hb[0] = new SolidColorBrush(Colors.AliceBlue);
+            hb[1] = new SolidColorBrush(Colors.Crimson);
+            hb[2] = new SolidColorBrush(Colors.FloralWhite);
+            hb[3] = new SolidColorBrush(Colors.Honeydew);
+            hb[4] = new SolidColorBrush(Colors.Gray);
+            hb[5] = new SolidColorBrush(Colors.Chartreuse);
+            hb[6] = new SolidColorBrush(Colors.LightSkyBlue);
+            hb[7] = new SolidColorBrush(Colors.Linen);
+            hb[8] = new SolidColorBrush(Colors.Tan);
+
+            
+
+            try
+            {
+                DataRowView product = (DataRowView)e.Row.DataContext;
+                int id = Convert.ToInt32(product.Row.ItemArray[0]);
+                int battlegroupcurr = Convert.ToInt32(db.RunSelect("Select Battle_Id From PeopleBattleGroup Where People_Id = " + id + "").Rows[0][0]);
+
+
+                if (idOfGrouupforPainting != battlegroupcurr)
+                {
+                    idOfGrouupforPainting = battlegroupcurr;
+                    CurrentBrush = hb[currcolor];
+                    currcolor++;
+                    if (currcolor == 9)
+                    { currcolor = 0; }
+                }
+                e.Row.Background = CurrentBrush;
+            }
+            catch 
+            { }
         }
     }
-}
+
+
+    public class Product
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string club { get; set; }
+        public string Town { get; set; }
+        public string Weight { get; set; }
+        public string Age { get; set; }
+        public string street { get; set; }
+        public string Gender { get; set; }
+        public DateTime DAtee { get; set; }
+
+
+    }
+        public class Kid
+        {
+            string fio, sportclub, city, street, gender;
+            int age, num;
+            double weight;
+            DateTime dateofbirth;
+            AgeClass ageclass;
+            WeightClass weightclass;
+            int iDOfBattleGroup;
+            bool haveBattlealready = false;
+            int iDBattleG;
+
+            public int Num { get { return num; } set { num = value; } }
+            public string FIO { get { return fio; } set { fio = value; } }
+            public string Sportclub { get { return sportclub; } set { sportclub = value; } }
+            public string City { get { return city; } set { city = value; } }
+            public double Weight { get { return weight; } set { weight = value; } }
+            public int Age { get { return age; } set { age = value; } }
+            public string Street { get { return street; } set { street = value; } }
+            public string Gender { get { return gender; } set { gender = value; } }
+            public DateTime Dateofbirth { get { return dateofbirth; } set { dateofbirth = value; } }
+            public AgeClass AgeClass { get { return ageclass; } set { ageclass = value; } }
+            public WeightClass WeightClass { get { return weightclass; } set { weightclass = value; } }
+            public int IDOfBattleGroup { get { return iDOfBattleGroup; } set { iDOfBattleGroup = value; } }
+            public bool HaveBattlealready { get { return haveBattlealready; } set { haveBattlealready = value; } }
+            public int IDBattleG { get { return iDBattleG; } set { iDBattleG = value; } }
+        }
+        public class AgeClass
+        {
+            int num, from, to;
+            public int Num { get { return num; } set { num = value; } }
+            public int From { get { return from; } set { from = value; } }
+            public int To { get { return to; } set { to = value; } }
+        }
+        public class WeightClass
+        {
+            int num, from, to;
+            public int Num { get { return num; } set { num = value; } }
+            public int From { get { return from; } set { from = value; } }
+            public int To { get { return to; } set { to = value; } }
+        }
+
+        
+    }
+

@@ -11,9 +11,9 @@ namespace Judo
 {
     class SQLData
     {
-        //     string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=Djudo;Integrated Security=True";// РИНАТ Повелитель Класса SQLDATA
+             string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=Djudo;Integrated Security=True";// РИНАТ Повелитель Класса SQLDATA
         //      string connectionString = "Data Source=HOUMPC\\HOUMPC;Initial Catalog=Djudo;Integrated Security=SSPI";// Евгения Погорелова
-             string connectionString = @"Data Source=DESKTOP-K1FLG14\SQLEXPRESS;Initial Catalog=Djudo;Integrated Security=True";// Юлия Носонова
+          //   string connectionString = @"Data Source=DESKTOP-K1FLG14\SQLEXPRESS;Initial Catalog=Djudo;Integrated Security=True";// Юлия Носонова
         //     string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=Djudo;Integrated Security=True";// Кристина Саган
         //     string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=Djudo;Integrated Security=True";// Екатерина Путенихина
          //    string connectionString = "Data Source=DESKTOP-V4KR3NR;Initial Catalog=новая;Integrated Security=True";// РИНАТ Повелитель Класса SQLDATA
@@ -42,8 +42,8 @@ namespace Judo
 
         public string RunInsertUpdateDelete(string zapros)
         {
-            try
-            {
+            //try
+            //{
                 SqlConnection connection = new SqlConnection(connectionString);
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
@@ -52,11 +52,11 @@ namespace Judo
                 cmd.ExecuteNonQuery();
                 cmd.Clone();
                 connection.Close();
-            }
-            catch (Exception exc)
-            {
-                return ("Произошла ошибка сервера:\r\n" + exc.Message);
-            }
+            //}
+            //catch (Exception exc)
+            //{
+                //return ("Произошла ошибка сервера:\r\n" + exc.Message);
+            //}
             return "Операция прошла успешно";
          
 
